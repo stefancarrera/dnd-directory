@@ -113,3 +113,28 @@ function getClassData(name) {
   });
   xhr.send();
 }
+
+var $spellRow = document.querySelector('#spellRow');
+var $spellTitle = document.querySelector('#spellTitle');
+var $spellList = document.getElementById('spellList');
+
+$spellRow.addEventListener('click', function (event) {
+  $spellList.innerHTML = '';
+  getSpellData(event.target.id);
+  $spellTitle.textContent = 'Spell Level: ' + event.target.id;
+});
+
+function getSpellData(level) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://www.dnd5eapi.co/api/spells?level=' + level);
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', function () {
+    var spells = xhr.response;
+    for (var z = 0; z < spells.results.length; z++) {
+      var $spellLiItem = document.createElement('li');
+      $spellLiItem.textContent = spells.results[z].name;
+      $spellList.appendChild($spellLiItem);
+    }
+  });
+  xhr.send();
+}
