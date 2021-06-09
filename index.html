@@ -16,10 +16,10 @@
     <div class="row logoHeader">
         <object data="images/5eDndLogo.svg" type="image/svg+xml" class="dndLogo"></object>
       </div>
-      <div class="redRow">
-        <button>Class</button>
-        <button>Spells</button>
-        <button>Dice</button>
+      <div class="redRow" id="topNav">
+        <button id="classNavBtn">Class</button>
+        <button id="spellNavBtn">Spells</button>
+        <button id="diceNavBtn">Dice</button>
       </div>
       <div class="row classNav" id="classNav">
         <select class="classSelect" id="classSelect">
@@ -39,7 +39,8 @@
         </select>
         <img src="images/class-icons/barbarian.svg" class="classIcon">
       </div>
-      <div class="contentBody">
+      <!--Class Page-->
+      <div class="contentBody" id="classBody">
         <div class="redRow">
           <h2>Description</h2>
         </div>
@@ -57,6 +58,25 @@
           <h3>Armor and Weapons</h3>
           <ul id="equipLi">
           </ul>
+      </div>
+      <!--Spell Page-->
+      <div class="contentBody hidden" id="spellBody">
+        <div class="redRow" id="spellRow">
+          <button class="spellBtn" id="0">Cantrips</button>
+          <button class="spellBtn" id="1">1</button>
+          <button class="spellBtn" id="2">2</button>
+          <button class="spellBtn" id="3">3</button>
+          <button class="spellBtn" id="4">4</button>
+          <button class="spellBtn" id="5">5</button>
+          <button class="spellBtn" id="6">6</button>
+          <button class="spellBtn" id="7">7</button>
+          <button class="spellBtn" id="8">8</button>
+          <button class="spellBtn" id="9">9</button>
+        </div>
+        <h3 id="spellTitle"></h3>
+        <ul id="spellList">
+
+        </ul>
       </div>
   </div>
   <script src="js/data.js"></script>

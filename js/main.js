@@ -79,6 +79,23 @@ var $equipLi = document.querySelector('#equipLi');
 var $savingThrowLi = document.querySelector('#savingThrowsLi');
 var $classIcon = document.querySelector('.classIcon');
 var $priAbil = document.querySelector('.priAbil');
+var $classNavBtn = document.getElementById('classNavBtn');
+var $spellNavBtn = document.getElementById('spellNavBtn');
+// var $diceNavBtn = document.getElementById('diceNavBtn');
+var $topNAv = document.getElementById('topNav');
+var $classBody = document.getElementById('classBody');
+var $spellBody = document.getElementById('spellBody');
+
+$topNAv.addEventListener('click', function (event) {
+  if (event.target === $classNavBtn) {
+    $classBody.className = 'contentBody';
+    $spellBody.className = 'contentBody hidden';
+  }
+  if (event.target === $spellNavBtn) {
+    $classBody.className = 'contentBody hidden';
+    $spellBody.className = 'contentBody';
+  }
+});
 
 $classSelect.addEventListener('change', function (event) {
   for (var i = 0; i < classDesc.length; i++) {
@@ -109,6 +126,35 @@ function getClassData(name) {
       var savingThrowLiItem = document.createElement('li');
       savingThrowLiItem.textContent = classObj.saving_throws[y].name;
       $savingThrowLi.appendChild(savingThrowLiItem);
+    }
+  });
+  xhr.send();
+}
+
+var $spellRow = document.querySelector('#spellRow');
+var $spellTitle = document.querySelector('#spellTitle');
+var $spellList = document.getElementById('spellList');
+
+$spellRow.addEventListener('click', function (event) {
+  $spellList.innerHTML = '';
+  getSpellData(event.target.id);
+  if (event.target.id === '0') {
+    $spellTitle.textContent = 'Cantrips';
+  } else {
+    $spellTitle.textContent = 'Spell Level: ' + event.target.id;
+  }
+});
+
+function getSpellData(level) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://www.dnd5eapi.co/api/spells?level=' + level);
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', function () {
+    var spells = xhr.response;
+    for (var z = 0; z < spells.results.length; z++) {
+      var $spellLiItem = document.createElement('li');
+      $spellLiItem.textContent = spells.results[z].name;
+      $spellList.appendChild($spellLiItem);
     }
   });
   xhr.send();

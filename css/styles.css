@@ -1,3 +1,7 @@
+.hidden {
+  display: none;
+}
+
 body {
   font-family: 'Mate SC', serif;
   background-color: #333;
@@ -62,6 +66,10 @@ button:hover {
   color: white;
 }
 
+.spellBtn {
+  width: 100%;
+}
+
 .classSelect {
   font-family: 'Mate SC', serif;
   font-size: 25px;
@@ -102,4 +110,24 @@ li {
 
 .classContent {
   list-style-type: none;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 2px solid #f7ce65;
+  background-color: #290000;
+  color: white;
+  text-align: left;
+  margin: 0.25rem 0.5rem;
+}
+
+@media (max-width: 600px) {
+  button {
+    margin: auto;
+  }
 }
