@@ -87,10 +87,19 @@ button:hover {
 
 .contentBody {
   background-color: white;
-  width: 100%;
+  min-width: 100%;
   border: 2px solid #f7ce65;
 }
 
-.descText {
+p {
   padding: 0 1rem;
+  font-size: 20px;
+}
+
+li {
+  font-size: 20px;
+}
+
+.classContent {
+  list-style-type: none;
 }
