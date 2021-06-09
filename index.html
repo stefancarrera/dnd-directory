@@ -16,10 +16,10 @@
     <div class="row logoHeader">
         <object data="images/5eDndLogo.svg" type="image/svg+xml" class="dndLogo"></object>
       </div>
-      <div class="redRow">
-        <button>Class</button>
-        <button>Spells</button>
-        <button>Dice</button>
+      <div class="redRow" id="topNav">
+        <button id="classNavBtn">Class</button>
+        <button id="spellNavBtn">Spells</button>
+        <button id="diceNavBtn">Dice</button>
       </div>
       <div class="row classNav" id="classNav">
         <select class="classSelect" id="classSelect">
@@ -40,7 +40,7 @@
         <img src="images/class-icons/barbarian.svg" class="classIcon">
       </div>
       <!--Class Page-->
-      <div class="contentBody hidden">
+      <div class="contentBody" id="classBody">
         <div class="redRow">
           <h2>Description</h2>
         </div>
@@ -60,9 +60,8 @@
           </ul>
       </div>
       <!--Spell Page-->
-      <div class="contentBody">
+      <div class="contentBody hidden" id="spellBody">
         <div class="redRow" id="spellRow">
-          <button class="spellBtn" id="allSpells">All</button>
           <button class="spellBtn" id="0">Cantrips</button>
           <button class="spellBtn" id="1">1</button>
           <button class="spellBtn" id="2">2</button>
