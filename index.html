@@ -8,12 +8,70 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Mate+SC&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-  </header>
-  <main>
-  </main>
+  <div class="container">
+    <div class="row logoHeader">
+        <object data="images/5eDndLogo.svg" type="image/svg+xml" class="dndLogo"></object>
+      </div>
+      <div class="redRow">
+        <button>Class</button>
+        <button>Spells</button>
+        <button>Dice</button>
+      </div>
+    <main class="container">
+      <div class="row classNav" id="classNav">
+        <select class="classSelect" id="classSelect">
+          <option default>Select Your Class</option>
+          <option value="barbarian">Barbarian</option>
+          <option value="bard">Bard</option>
+          <option value="cleric">Cleric</option>
+          <option value="druid">Druid</option>
+          <option value="fighter">Fighter</option>
+          <option value="monk">Monk</option>
+          <option value="paladin">Paladin</option>
+          <option value="ranger">Ranger</option>
+          <option value="rogue">Rogue</option>
+          <option value="sorcerer">Sorcerer</option>
+          <option value="warlock">Warlock</option>
+          <option value="wizard">Wizard</option>
+        </select>
+        <img src="images/class-icons/barbarian.svg" class="classIcon">
+      </div>
+      <div class="contentBody">
+        <!-- --CLASS PAGE-- -->
+        <div class="redRow">
+          <h2>Description</h2>
+        </div>
+        <p class="descText">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+        aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <div class="redRow">
+          <h2>Proficiences</h2>
+        </div>
+          <h3>Equipment</h3>
+          <ul id="equipLi">
+            <li>test</li>
+            <li>test</li>
+          </ul>
+        <h3>Skills</h3>
+        <ul id="skillLi">
+          <li>test</li>
+          <li>test</li>
+        </ul>
+        <div class="redRow">
+          <h2>Saving Throws</h2>
+        </div>
+          <ul id="savingThrowsLi">
+            <li>test</li>
+            <li>test</li>
+          </ul>
+      </div>
+    </main>
+  </div>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
