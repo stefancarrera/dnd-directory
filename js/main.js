@@ -159,3 +159,64 @@ function getSpellData(level) {
   });
   xhr.send();
 }
+
+$spellList.addEventListener('click', function (event) {
+  $mOverlay.className = 'overlay';
+  getSpellDetails(event.target.textContent.split(' ').join('-').toLowerCase());
+});
+
+var $spellDesc = document.querySelector('#spellDesc');
+var $spellName = document.querySelector('#spellName');
+var $spellLevel = document.querySelector('#spellLevel');
+var $spellSch = document.querySelector('#spellSch');
+var $spellConc = document.querySelector('#spellConc');
+var $spellComp = document.querySelector('#spellComp');
+var $spellCast = document.querySelector('#spellCast');
+var $spellRng = document.querySelector('#spellRng');
+var $spellRit = document.querySelector('#spellRit');
+
+function getSpellDetails(name) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://www.dnd5eapi.co/api/spells/' + name);
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', function () {
+    var spellDetails = xhr.response;
+    $spellName.textContent = 'Spell Name: ' + spellDetails.name;
+    $spellLevel.textContent = 'Spell Level: ' + spellDetails.level;
+    $spellSch.textContent = 'School: ' + spellDetails.school.name;
+    $spellCast.textContent = 'Casting Time: ' + spellDetails.casting_time;
+    $spellRng.textContent = 'Range: ' + spellDetails.range;
+    if (spellDetails.ritual === false) {
+      $spellRit.textContent = 'Ritual: Cannot be cast as a ritual';
+    } else {
+      $spellRit.textContent = 'Ritual: Can be cast as a ritual';
+    }
+    if (spellDetails.concentration === false) {
+      $spellConc.textContent = 'Concentration: N/A';
+    } else {
+      $spellConc.textContent = 'Concentration: ' + spellDetails.duration;
+    }
+    $spellDesc.innerHTML = '';
+    for (var x = 0; x < spellDetails.desc.length; x++) {
+      var $p = document.createElement('p');
+      $p.textContent = spellDetails.desc[x];
+      $spellDesc.appendChild($p);
+    }
+    $spellComp.textContent = 'Components: ';
+    for (var y = 0; y < spellDetails.components.length; y++) {
+      var $span = document.createElement('span');
+      $span.textContent = spellDetails.components[y];
+      $spellComp.appendChild($span);
+    }
+
+  });
+  xhr.send();
+}
+
+var $mOverlay = document.getElementById('overlay');
+
+$mOverlay.addEventListener('click', function (event) {
+  if (event.target === $mOverlay) {
+    $mOverlay.className = 'overlay hidden';
+  }
+});
