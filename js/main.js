@@ -81,19 +81,21 @@ var $classIcon = document.querySelector('.classIcon');
 var $priAbil = document.querySelector('.priAbil');
 var $classNavBtn = document.getElementById('classNavBtn');
 var $spellNavBtn = document.getElementById('spellNavBtn');
-// var $diceNavBtn = document.getElementById('diceNavBtn');
 var $topNAv = document.getElementById('topNav');
 var $classBody = document.getElementById('classBody');
 var $spellBody = document.getElementById('spellBody');
+var $spellFilter = document.getElementById('spellFilter');
 
 $topNAv.addEventListener('click', function (event) {
   if (event.target === $classNavBtn) {
     $classBody.className = 'contentBody';
     $spellBody.className = 'contentBody hidden';
+    $spellFilter.className = 'filterBtn hidden';
   }
   if (event.target === $spellNavBtn) {
     $classBody.className = 'contentBody hidden';
     $spellBody.className = 'contentBody';
+    $spellFilter.className = 'filterBtn';
   }
 });
 

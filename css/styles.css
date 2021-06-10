@@ -160,6 +160,10 @@ td {
   color: white;
 }
 
+.filterBtn {
+  width: 250px;
+}
+
 @media (max-width: 600px) {
   button {
     margin: auto;
