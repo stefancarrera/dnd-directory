@@ -26,6 +26,11 @@ h3 {
 .row {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+}
+
+.diceRow {
+  display: flex;
 }
 
 .dndLogo {
@@ -70,6 +75,18 @@ button:hover {
   width: 100%;
 }
 
+.diceBtn {
+  height: 55px;
+  width: 125px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.svg:hover {
+  filter: brightness(5);
+}
+
 .picked {
   background-color: #f7ce65;
   box-shadow: 0 5px 15px rgba(253, 218, 130, 0.8);
@@ -88,7 +105,7 @@ button:hover {
   margin: 0.25rem 0.5rem;
 }
 
-.classIcon {
+.icon {
   height: 50px;
 }
 
@@ -105,6 +122,15 @@ button:hover {
   border: 2px solid #f7ce65;
 }
 
+.dice {
+  margin-right: 0.25rem;
+}
+
+.diceH2 {
+  color: white;
+  text-shadow: 2px 0 0 #290000, -2px 0 0 #290000, 0 2px 0 #290000, 0 -2px 0 #290000, 1px 1px #290000, -1px -1px 0 #290000, 1px -1px 0 #290000, -1px 1px 0 #290000;
+}
+
 p {
   padding: 0 1rem;
   font-size: 20px;
@@ -118,6 +144,39 @@ li {
   display: flex;
   flex-direction: column;
   width: 50%;
+}
+
+.bigDie {
+  height: 400px;
+}
+
+.colFourth {
+  padding-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 25%;
+  border: 2px solid #f7ce65;
+}
+
+.colThreeFour {
+  padding-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 75%;
+  border: 2px solid #f7ce65;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border: 2px solid #f7ce65;
+  background-color: #930c10;
+  color: white;
 }
 
 .overlay {
@@ -156,8 +215,21 @@ li {
   width: 150px;
 }
 
+input {
+  margin: 1rem 0;
+}
+
+label {
+  font-size: 20px;
+  margin: 1rem 1rem;
+}
+
 @media (max-width: 600px) {
   button {
     margin: auto;
+  }
+
+  .diceBtn {
+    width: 110px;
   }
 }

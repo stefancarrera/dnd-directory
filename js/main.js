@@ -77,7 +77,7 @@ var $classSelect = document.querySelector('#classSelect');
 var $descP = document.querySelector('.descText');
 var $equipLi = document.querySelector('#equipLi');
 var $savingThrowLi = document.querySelector('#savingThrowsLi');
-var $classIcon = document.querySelector('.classIcon');
+var $classIcon = document.querySelector('#classIcon');
 var $priAbil = document.querySelector('.priAbil');
 var $classNavBtn = document.getElementById('classNavBtn');
 var $spellNavBtn = document.getElementById('spellNavBtn');
@@ -104,6 +104,9 @@ var $classSpellRow = document.querySelector('#classSpellRow');
 var $classSpellList = document.getElementById('classSpellList');
 var $classSpellTitle = document.querySelector('#classSpellTitle');
 var currentSpellId = '';
+var $diceNavBtn = document.getElementById('diceNavBtn');
+var $diceBody = document.getElementById('diceBody');
+// var $diceNavBar = document.getElementById('diceNavBar');
 
 $topNav.addEventListener('click', function (event) {
   if (event.target === $classNavBtn) {
@@ -111,13 +114,28 @@ $topNav.addEventListener('click', function (event) {
     $spellBody.className = 'contentBody hidden';
     $spellFilter.className = 'filterBtn hidden';
     $allSpellsBtn.className = 'allSpells picked hidden';
+    $classNavBar.className = 'row classNav';
+    $diceBody.className = 'contentBody hidden';
+    // $diceNavBar.className = 'row classNav hidden';
   }
   if (event.target === $spellNavBtn) {
     $classBody.className = 'contentBody hidden';
     $spellBody.className = 'contentBody';
     $classSpellBody.className = 'contentBody hidden';
+    $classNavBar.className = 'row classNav';
     $spellFilter.className = 'filterBtn';
     $allSpellsBtn.className = 'allSpells picked';
+    $diceBody.className = 'contentBody hidden';
+    // $diceNavBar.className = 'row classNav hidden';
+  }
+  if (event.target === $diceNavBtn) {
+    $classBody.className = 'contentBody hidden';
+    $spellBody.className = 'contentBody hidden';
+    $classSpellBody.className = 'contentBody hidden';
+    $classNavBar.className = 'row classNav hidden';
+    $diceBody.className = 'contentBody';
+    // $diceNavBar.className = 'row classNav';
+
   }
 });
 
@@ -299,3 +317,13 @@ $classSpellRow.addEventListener('click', function (event) {
   currentSpellId = event.target.value;
   getClassSpellLvlData(event.target.value);
 });
+
+// var $imgD20 = document.getElementById('d20');
+// var $imgD12 = document.getElementById('d12');
+// var $imgD10 = document.getElementById('d10');
+// var $imgD8 = document.getElementById('d8');
+// var $imgD6 = document.getElementById('d6');
+// var $imgD4 = document.getElementById('d4');
+// var $diceBtn = document.querySelectorAll('.diceBtn');
+
+// $diceBtn.addEventListener();
