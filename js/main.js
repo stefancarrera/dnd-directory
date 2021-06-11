@@ -81,21 +81,43 @@ var $classIcon = document.querySelector('.classIcon');
 var $priAbil = document.querySelector('.priAbil');
 var $classNavBtn = document.getElementById('classNavBtn');
 var $spellNavBtn = document.getElementById('spellNavBtn');
-var $topNAv = document.getElementById('topNav');
+var $topNav = document.getElementById('topNav');
 var $classBody = document.getElementById('classBody');
 var $spellBody = document.getElementById('spellBody');
-var $spellFilter = document.getElementById('spellFilter');
+var $spellFilter = document.querySelector('#spellFilter');
+var $allSpellsBtn = document.getElementById('allSpellsBtn');
+var $spellRow = document.querySelector('#spellRow');
+var $spellTitle = document.querySelector('#spellTitle');
+var $spellList = document.getElementById('spellList');
+var $spellDesc = document.querySelector('#spellDesc');
+var $spellName = document.querySelector('#spellName');
+var $spellLevel = document.querySelector('#spellLevel');
+var $spellSch = document.querySelector('#spellSch');
+var $spellConc = document.querySelector('#spellConc');
+var $spellComp = document.querySelector('#spellComp');
+var $spellCast = document.querySelector('#spellCast');
+var $spellRng = document.querySelector('#spellRng');
+var $spellRit = document.querySelector('#spellRit');
+var $classSpellBody = document.querySelector('#classSpellBody');
+var $classNavBar = document.querySelector('#classNav');
+var $classSpellRow = document.querySelector('#classSpellRow');
+var $classSpellList = document.getElementById('classSpellList');
+var $classSpellTitle = document.querySelector('#classSpellTitle');
+var currentSpellId = '';
 
-$topNAv.addEventListener('click', function (event) {
+$topNav.addEventListener('click', function (event) {
   if (event.target === $classNavBtn) {
     $classBody.className = 'contentBody';
     $spellBody.className = 'contentBody hidden';
     $spellFilter.className = 'filterBtn hidden';
+    $allSpellsBtn.className = 'allSpells picked hidden';
   }
   if (event.target === $spellNavBtn) {
     $classBody.className = 'contentBody hidden';
     $spellBody.className = 'contentBody';
+    $classSpellBody.className = 'contentBody hidden';
     $spellFilter.className = 'filterBtn';
+    $allSpellsBtn.className = 'allSpells picked';
   }
 });
 
@@ -110,6 +132,12 @@ $classSelect.addEventListener('change', function (event) {
   $savingThrowLi.innerHTML = '';
   $equipLi.innerHTML = '';
   getClassData(event.target.value);
+  getClassSpellData(event.target.value);
+
+  if ($classSpellBody.className !== 'contentBody hidden') {
+    $classSpellList.innerHTML = '';
+    getClassSpellLvlData(currentSpellId);
+  }
 });
 
 function getClassData(name) {
@@ -132,10 +160,6 @@ function getClassData(name) {
   });
   xhr.send();
 }
-
-var $spellRow = document.querySelector('#spellRow');
-var $spellTitle = document.querySelector('#spellTitle');
-var $spellList = document.getElementById('spellList');
 
 $spellRow.addEventListener('click', function (event) {
   $spellList.innerHTML = '';
@@ -166,16 +190,6 @@ $spellList.addEventListener('click', function (event) {
   $mOverlay.className = 'overlay';
   getSpellDetails(event.target.textContent.split(' ').join('-').toLowerCase());
 });
-
-var $spellDesc = document.querySelector('#spellDesc');
-var $spellName = document.querySelector('#spellName');
-var $spellLevel = document.querySelector('#spellLevel');
-var $spellSch = document.querySelector('#spellSch');
-var $spellConc = document.querySelector('#spellConc');
-var $spellComp = document.querySelector('#spellComp');
-var $spellCast = document.querySelector('#spellCast');
-var $spellRng = document.querySelector('#spellRng');
-var $spellRit = document.querySelector('#spellRit');
 
 function getSpellDetails(name) {
   var xhr = new XMLHttpRequest();
@@ -221,4 +235,67 @@ $mOverlay.addEventListener('click', function (event) {
   if (event.target === $mOverlay) {
     $mOverlay.className = 'overlay hidden';
   }
+});
+
+function getClassSpellData(name) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://www.dnd5eapi.co/api/classes/' + name + '/spells/');
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', function () {
+    data.curClass = [];
+    var classSpells = xhr.response;
+    data.curClass.push(classSpells.results);
+  });
+  xhr.send();
+}
+
+$classNavBar.addEventListener('click', function (event) {
+  if (event.target === $spellFilter) {
+    $spellFilter.className = 'filterBtn picked';
+    $allSpellsBtn.className = 'allSpells';
+    $spellBody.className = 'contentBody hidden';
+    $classSpellBody.className = 'contentBody';
+  }
+
+  if (event.target === $allSpellsBtn) {
+    $allSpellsBtn.className = 'allSpells picked';
+    $spellFilter.className = 'filterBtn';
+    $spellBody.className = 'contentBody';
+    $classSpellBody.className = 'contentBody hidden';
+    getSpellData('0');
+  }
+});
+
+function getClassSpellLvlData(level) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://www.dnd5eapi.co/api/spells?level=' + level);
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', function () {
+    var spellsLvl = xhr.response;
+    data.curLevel = [];
+    data.curLevel.push(spellsLvl.results);
+    var classObj = data.curClass[0];
+    var levelObj = data.curLevel[0];
+    for (var f = 0; f < levelObj.length; f++) {
+      for (var s = 0; s < classObj.length; s++) {
+        if (levelObj[f].name === classObj[s].name) {
+          var liItem = document.createElement('li');
+          liItem.textContent = levelObj[f].name;
+          $classSpellList.appendChild(liItem);
+        }
+      }
+    }
+  });
+  xhr.send();
+}
+
+$classSpellRow.addEventListener('click', function (event) {
+  $classSpellList.innerHTML = '';
+  if (event.target.value === '0') {
+    $classSpellTitle.textContent = 'Cantrips';
+  } else {
+    $classSpellTitle.textContent = 'Spell Level: ' + event.target.value;
+  }
+  currentSpellId = event.target.value;
+  getClassSpellLvlData(event.target.value);
 });
