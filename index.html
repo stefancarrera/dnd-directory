@@ -37,10 +37,12 @@
           <option value="warlock">Warlock</option>
           <option value="wizard">Wizard</option>
         </select>
+        <button class="allSpells hidden" id="allSpellsBtn">All Spells</button>
+        <button class="filterBtn hidden" id="spellFilter">Spells by Class</button>
         <img src="images/class-icons/barbarian.svg" class="classIcon">
       </div>
       <!--Class Page-->
-      <div class="contentBody hidden" id="classBody">
+      <div class="contentBody" id="classBody">
         <div class="redRow">
           <h2>Description</h2>
         </div>
@@ -59,7 +61,7 @@
           <ul id="equipLi">
           </ul>
       </div>
-      <!--Spell Page-->
+      <!--All Spell Page-->
       <div class="contentBody hidden" id="spellBody">
         <div class="redRow" id="spellRow">
           <button class="spellBtn" id="0">Cantrips</button>
@@ -75,6 +77,24 @@
         </div>
         <h3 id="spellTitle"></h3>
         <ul id="spellList"></ul>
+      </div>
+      <!--Class Spell Page-->
+      <div class="contentBody hidden" id="classSpellBody">
+        <div class="redRow" id="classSpellRow">
+          <button class="spellBtn" value="0">Cantrips</button>
+          <button class="spellBtn" value="1">1</button>
+          <button class="spellBtn" value="2">2</button>
+          <button class="spellBtn" value="3">3</button>
+          <button class="spellBtn" value="4">4</button>
+          <button class="spellBtn" value="5">5</button>
+          <button class="spellBtn" value="6">6</button>
+          <button class="spellBtn" value="7">7</button>
+          <button class="spellBtn" value="8">8</button>
+          <button class="spellBtn" value="9">9</button>
+        </div>
+        <h3 id="classSpellTitle"></h3>
+        <ul id="classSpellList">
+        </ul>
       </div>
       <!--Modal Div-->
       <div class="overlay hidden" id="overlay">

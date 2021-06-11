@@ -70,6 +70,12 @@ button:hover {
   width: 100%;
 }
 
+.picked {
+  background-color: #f7ce65;
+  box-shadow: 0 5px 15px rgba(253, 218, 130, 0.8);
+  color: white;
+}
+
 .classSelect {
   font-family: 'Mate SC', serif;
   font-size: 25px;
@@ -108,24 +114,6 @@ li {
   font-size: 20px;
 }
 
-.classContent {
-  list-style-type: none;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-th,
-td {
-  border: 2px solid #f7ce65;
-  background-color: #290000;
-  color: white;
-  text-align: left;
-  margin: 0.25rem 0.5rem;
-}
-
 .colHalf {
   display: flex;
   flex-direction: column;
@@ -158,6 +146,14 @@ td {
 
 .pModal {
   color: white;
+}
+
+.filterBtn {
+  width: 200px;
+}
+
+.allSpells {
+  width: 150px;
 }
 
 @media (max-width: 600px) {
