@@ -138,6 +138,8 @@ $topNav.addEventListener('click', function (event) {
     $classSpellBody.className = 'contentBody hidden';
     $classNavBar.className = 'row classNav hidden';
     $diceBody.className = 'contentBody';
+    $diceAmt.value = '1';
+    $diceMod.value = '0';
 
   }
 });
@@ -365,11 +367,11 @@ function diceRoll() {
     }
     var finalResult1 = (resultGrp1.reduce((a, b) => a + b, 0)) + parseInt($diceMod.value);
     $rollResult.textContent = 'You rolled a ' + $diceAmt.value + 'D' + $curDie + ' with a modifier of ' + $diceMod.value + ' for a total of ' + finalResult1;
-  } else if ((parseInt($diceMod.value) > 0) && (parseInt($diceAmt.value) <= 1)) {
+  } else if ((parseInt($diceMod.value) >= 1) && (parseInt($diceAmt.value) < 2)) {
     var roll = Math.floor(Math.random() * $curDie) + 1;
     var result = parseInt($diceMod.value) + roll;
     $rollResult.textContent = 'You rolled a D' + $curDie + ' with a modifier of ' + $diceMod.value + ' for a total of ' + result;
-  } else if ((parseInt($diceAmt.value) > 1) && (parseInt($diceMod.value) === 0)) {
+  } else if ((parseInt($diceAmt.value) >= 2) && (parseInt($diceMod.value) < 1)) {
     var resultGrp = [];
     for (var y = 0; y < parseInt($diceAmt.value); y++) {
       resultGrp.push(Math.floor(Math.random() * $curDie) + 1);
