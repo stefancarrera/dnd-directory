@@ -366,7 +366,7 @@ function diceRoll() {
       resultGrp1.push(Math.floor(Math.random() * $curDie) + 1);
     }
     var finalResult1 = (resultGrp1.reduce((a, b) => a + b, 0)) + parseInt($diceMod.value);
-    $rollResult.textContent = 'You rolled a ' + $diceAmt.value + 'D' + $curDie + ' with a modifier of ' + $diceMod.value + ' for a total of ' + finalResult1;
+    $rollResult.textContent = 'You rolled a ' + $diceAmt.value + 'D' + $curDie + ' with a modifier of ' + $diceMod.value + ' for ' + resultGrp1.join(', ') + ' with a total of ' + finalResult1;
   } else if ((parseInt($diceMod.value) >= 1) && (parseInt($diceAmt.value) < 2)) {
     var roll = Math.floor(Math.random() * $curDie) + 1;
     var result = parseInt($diceMod.value) + roll;
@@ -377,7 +377,7 @@ function diceRoll() {
       resultGrp.push(Math.floor(Math.random() * $curDie) + 1);
     }
     var finalResult = resultGrp.reduce((a, b) => a + b, 0);
-    $rollResult.textContent = 'You rolled a ' + $diceAmt.value + 'D' + $curDie + ' for a total of ' + finalResult;
+    $rollResult.textContent = 'You rolled a ' + $diceAmt.value + 'D' + $curDie + ' for ' + resultGrp.join(', ') + ' with a total of ' + finalResult;
   } else {
     var regRoll = Math.floor(Math.random() * $curDie) + 1;
     $rollResult.textContent = 'You rolled a D' + $curDie + ' for a total of ' + regRoll;
