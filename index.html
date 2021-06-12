@@ -39,9 +39,8 @@
         </select>
         <button class="allSpells hidden" id="allSpellsBtn">All Spells</button>
         <button class="filterBtn hidden" id="spellFilter">Spells by Class</button>
-        <img src="images/class-icons/barbarian.svg" class="classIcon">
+        <img src="images/class-icons/barbarian.svg" class="icon" id="classIcon">
       </div>
-      <!--Class Page-->
       <div class="contentBody" id="classBody">
         <div class="redRow">
           <h2>Description</h2>
@@ -61,7 +60,6 @@
           <ul id="equipLi">
           </ul>
       </div>
-      <!--All Spell Page-->
       <div class="contentBody hidden" id="spellBody">
         <div class="redRow" id="spellRow">
           <button class="spellBtn" id="0">Cantrips</button>
@@ -78,7 +76,6 @@
         <h3 id="spellTitle"></h3>
         <ul id="spellList"></ul>
       </div>
-      <!--Class Spell Page-->
       <div class="contentBody hidden" id="classSpellBody">
         <div class="redRow" id="classSpellRow">
           <button class="spellBtn" value="0">Cantrips</button>
@@ -96,6 +93,54 @@
         <ul id="classSpellList">
         </ul>
       </div>
+      <!--DICE PAGE-->
+      <div class="contentBody hidden" id="diceBody">
+        <div class="classNav row" id="diceNavBar">
+          <h2 class="diceH2">Dice Roller</h2>
+          <img src="images/dice/d20-fill.svg" alt="dice" class="icon dice" id="diceBar">
+        </div>
+        <div class="diceRow">
+          <div class="colFourth">
+            <button class="diceBtn" value="20">D20 <img src="images/dice/d20-fill.svg" class="icon dice svg" id="d20"></button>
+            <button class="diceBtn" value="12">D12 <img src="images/dice/d12-fill.svg" class="icon dice svg" id="d12"></button>
+            <button class="diceBtn" value="10">D10 <img src="images/dice/d10-fill.svg" class="icon dice svg" id="d10"></button>
+            <button class="diceBtn" value="8">D8 <img src="images/dice/d8-fill.svg" class="icon dice svg" id="d8"></button>
+            <button class="diceBtn" value="6">D6 <img src="images/dice/d6-fill.svg" class="icon dice svg" id="d6"></button>
+            <button class="diceBtn" value="4">D4 <img src="images/dice/d4-fill.svg" class="icon dice svg" id="d4"></button>
+          </div>
+          <div class="colThreeFour">
+            <img src="images/dice/d20-fill.svg" class="bigDie">
+          </div>
+        </div>
+          <div class="col">
+            <form>
+              <div class="row">
+                <label>Number of Dice</label>
+                <input
+                name="diceAmt"
+                type="number"
+                min="1"
+                id="diceAmt"
+                placeholder="Enter the amount of dice to be rolled">
+              </div>
+              <div class="row">
+                <label>Modifier</label>
+                <input
+                name="diceMod"
+                type="number"
+                min="0"
+                id="diceMod"
+                placeholder="Enter your roll modifier">
+              </div>
+            </form>
+            <button id="roll">Roll</button>
+            <div class="row mRow">
+              <p>Your roll result:</p>
+              <p id="rollResult"></p>
+            </div>
+          </div>
+      </div>
+
       <!--Modal Div-->
       <div class="overlay hidden" id="overlay">
         <div class="modal">

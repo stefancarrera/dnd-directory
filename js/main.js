@@ -77,7 +77,7 @@ var $classSelect = document.querySelector('#classSelect');
 var $descP = document.querySelector('.descText');
 var $equipLi = document.querySelector('#equipLi');
 var $savingThrowLi = document.querySelector('#savingThrowsLi');
-var $classIcon = document.querySelector('.classIcon');
+var $classIcon = document.querySelector('#classIcon');
 var $priAbil = document.querySelector('.priAbil');
 var $classNavBtn = document.getElementById('classNavBtn');
 var $spellNavBtn = document.getElementById('spellNavBtn');
@@ -104,6 +104,15 @@ var $classSpellRow = document.querySelector('#classSpellRow');
 var $classSpellList = document.getElementById('classSpellList');
 var $classSpellTitle = document.querySelector('#classSpellTitle');
 var currentSpellId = '';
+var $diceNavBtn = document.getElementById('diceNavBtn');
+var $diceBody = document.getElementById('diceBody');
+var $diceAmt = document.querySelector('#diceAmt');
+var $diceMod = document.querySelector('#diceMod');
+var $rollResult = document.querySelector('#rollResult');
+var $roll = document.querySelector('#roll');
+var $bigDie = document.querySelector('.bigDie');
+var $diceBtnCol = document.querySelector('.colFourth');
+var $curDie = '';
 
 $topNav.addEventListener('click', function (event) {
   if (event.target === $classNavBtn) {
@@ -111,13 +120,27 @@ $topNav.addEventListener('click', function (event) {
     $spellBody.className = 'contentBody hidden';
     $spellFilter.className = 'filterBtn hidden';
     $allSpellsBtn.className = 'allSpells picked hidden';
+    $classNavBar.className = 'row classNav';
+    $diceBody.className = 'contentBody hidden';
   }
   if (event.target === $spellNavBtn) {
     $classBody.className = 'contentBody hidden';
     $spellBody.className = 'contentBody';
     $classSpellBody.className = 'contentBody hidden';
+    $classNavBar.className = 'row classNav';
     $spellFilter.className = 'filterBtn';
     $allSpellsBtn.className = 'allSpells picked';
+    $diceBody.className = 'contentBody hidden';
+  }
+  if (event.target === $diceNavBtn) {
+    $classBody.className = 'contentBody hidden';
+    $spellBody.className = 'contentBody hidden';
+    $classSpellBody.className = 'contentBody hidden';
+    $classNavBar.className = 'row classNav hidden';
+    $diceBody.className = 'contentBody';
+    $diceAmt.value = '1';
+    $diceMod.value = '0';
+
   }
 });
 
@@ -298,4 +321,69 @@ $classSpellRow.addEventListener('click', function (event) {
   }
   currentSpellId = event.target.value;
   getClassSpellLvlData(event.target.value);
+});
+
+var $diceBarImg = document.getElementById('diceBar');
+
+$diceBtnCol.addEventListener('click', function (event) {
+
+  if ((event.target.value === '20') || (event.target.id === 'd20')) {
+    $bigDie.setAttribute('src', 'images/dice/d20-fill.svg');
+    $diceBarImg.setAttribute('src', 'images/dice/d20-fill.svg');
+    $curDie = '20';
+  }
+  if ((event.target.value === '12') || (event.target.id === 'd12')) {
+    $bigDie.setAttribute('src', 'images/dice/d12-fill.svg');
+    $diceBarImg.setAttribute('src', 'images/dice/d12-fill.svg');
+    $curDie = '12';
+  }
+  if ((event.target.value === '10') || (event.target.id === 'd10')) {
+    $bigDie.setAttribute('src', 'images/dice/d10-fill.svg');
+    $diceBarImg.setAttribute('src', 'images/dice/d10-fill.svg');
+    $curDie = '10';
+  }
+  if ((event.target.value === '8') || (event.target.id === 'd8')) {
+    $bigDie.setAttribute('src', 'images/dice/d8-fill.svg');
+    $diceBarImg.setAttribute('src', 'images/dice/d8-fill.svg');
+    $curDie = '8';
+  }
+  if ((event.target.value === '6') || (event.target.id === 'd6')) {
+    $bigDie.setAttribute('src', 'images/dice/d6-fill.svg');
+    $diceBarImg.setAttribute('src', 'images/dice/d6-fill.svg');
+    $curDie = '6';
+  }
+  if ((event.target.value === '4') || (event.target.id === 'd4')) {
+    $bigDie.setAttribute('src', 'images/dice/d4-fill.svg');
+    $diceBarImg.setAttribute('src', 'images/dice/d4-fill.svg');
+    $curDie = '4';
+  }
+});
+
+function diceRoll() {
+  if ((parseInt($diceMod.value) > 0) && (parseInt($diceAmt.value) > 1)) {
+    var resultGrp1 = [];
+    for (var i = 0; i < parseInt($diceAmt.value); i++) {
+      resultGrp1.push(Math.floor(Math.random() * $curDie) + 1);
+    }
+    var finalResult1 = (resultGrp1.reduce((a, b) => a + b, 0)) + parseInt($diceMod.value);
+    $rollResult.textContent = 'You rolled a ' + $diceAmt.value + 'D' + $curDie + ' with a modifier of ' + $diceMod.value + ' for a total of ' + finalResult1;
+  } else if ((parseInt($diceMod.value) >= 1) && (parseInt($diceAmt.value) < 2)) {
+    var roll = Math.floor(Math.random() * $curDie) + 1;
+    var result = parseInt($diceMod.value) + roll;
+    $rollResult.textContent = 'You rolled a D' + $curDie + ' with a modifier of ' + $diceMod.value + ' for a total of ' + result;
+  } else if ((parseInt($diceAmt.value) >= 2) && (parseInt($diceMod.value) < 1)) {
+    var resultGrp = [];
+    for (var y = 0; y < parseInt($diceAmt.value); y++) {
+      resultGrp.push(Math.floor(Math.random() * $curDie) + 1);
+    }
+    var finalResult = resultGrp.reduce((a, b) => a + b, 0);
+    $rollResult.textContent = 'You rolled a ' + $diceAmt.value + 'D' + $curDie + ' for a total of ' + finalResult;
+  } else {
+    var regRoll = Math.floor(Math.random() * $curDie) + 1;
+    $rollResult.textContent = 'You rolled a D' + $curDie + ' for a total of ' + regRoll;
+  }
+}
+
+$roll.addEventListener('click', function (event) {
+  diceRoll();
 });
