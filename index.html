@@ -97,7 +97,7 @@
       <div class="contentBody hidden" id="diceBody">
         <div class="classNav row" id="diceNavBar">
           <h2 class="diceH2">Dice Roller</h2>
-          <img src="images/dice/d20-fill.svg" alt="dice" class="icon dice">
+          <img src="images/dice/d20-fill.svg" alt="dice" class="icon dice" id="diceBar">
         </div>
         <div class="diceRow">
           <div class="colFourth">
@@ -119,6 +119,7 @@
                 <input
                 name="diceAmt"
                 type="number"
+                min="1"
                 id="diceAmt"
                 placeholder="Enter the amount of dice to be rolled">
               </div>
@@ -127,17 +128,15 @@
                 <input
                 name="diceMod"
                 type="number"
+                min="0"
                 id="diceMod"
                 placeholder="Enter your roll modifier">
               </div>
             </form>
+            <button id="roll">Roll</button>
             <div class="row mRow">
-              <p>You will roll:</p>
-              <p id="fromInput">test</p>
-            </div>
-            <div class="row mRow">
-              <p>Your rolled:</p>
-              <p id="rollResult">test</p>
+              <p>Your roll result:</p>
+              <p id="rollResult"></p>
             </div>
           </div>
       </div>
