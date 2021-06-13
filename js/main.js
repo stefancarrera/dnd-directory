@@ -113,6 +113,8 @@ var $roll = document.querySelector('#roll');
 var $bigDie = document.querySelector('.bigDie');
 var $diceBtnCol = document.querySelector('.colFourth');
 var $curDie = '';
+var $mOverlay = document.getElementById('overlay');
+var $diceBarImg = document.getElementById('diceBar');
 
 $topNav.addEventListener('click', function (event) {
   if (event.target === $classNavBtn) {
@@ -163,27 +165,6 @@ $classSelect.addEventListener('change', function (event) {
   }
 });
 
-function getClassData(name) {
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://www.dnd5eapi.co/api/classes/' + name);
-  xhr.responseType = 'json';
-  xhr.addEventListener('load', function () {
-    var classObj = xhr.response;
-    for (var x = 0; x < classObj.proficiencies.length; x++) {
-      var equipLiItem = document.createElement('li');
-      equipLiItem.textContent = classObj.proficiencies[x].name;
-      $equipLi.appendChild(equipLiItem);
-    }
-
-    for (var y = 0; y < classObj.saving_throws.length; y++) {
-      var savingThrowLiItem = document.createElement('li');
-      savingThrowLiItem.textContent = classObj.saving_throws[y].name;
-      $savingThrowLi.appendChild(savingThrowLiItem);
-    }
-  });
-  xhr.send();
-}
-
 $spellRow.addEventListener('click', function (event) {
   $spellList.innerHTML = '';
   getSpellData(event.target.id);
@@ -194,65 +175,10 @@ $spellRow.addEventListener('click', function (event) {
   }
 });
 
-function getSpellData(level) {
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://www.dnd5eapi.co/api/spells?level=' + level);
-  xhr.responseType = 'json';
-  xhr.addEventListener('load', function () {
-    var spells = xhr.response;
-    for (var z = 0; z < spells.results.length; z++) {
-      var $spellLiItem = document.createElement('li');
-      $spellLiItem.textContent = spells.results[z].name;
-      $spellList.appendChild($spellLiItem);
-    }
-  });
-  xhr.send();
-}
-
 $spellList.addEventListener('click', function (event) {
   $mOverlay.className = 'overlay';
   getSpellDetails(event.target.textContent.split(' ').join('-').toLowerCase());
 });
-
-function getSpellDetails(name) {
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://www.dnd5eapi.co/api/spells/' + name);
-  xhr.responseType = 'json';
-  xhr.addEventListener('load', function () {
-    var spellDetails = xhr.response;
-    $spellName.textContent = 'Spell Name: ' + spellDetails.name;
-    $spellLevel.textContent = 'Spell Level: ' + spellDetails.level;
-    $spellSch.textContent = 'School: ' + spellDetails.school.name;
-    $spellCast.textContent = 'Casting Time: ' + spellDetails.casting_time;
-    $spellRng.textContent = 'Range: ' + spellDetails.range;
-    if (spellDetails.ritual === false) {
-      $spellRit.textContent = 'Ritual: Cannot be cast as a ritual';
-    } else {
-      $spellRit.textContent = 'Ritual: Can be cast as a ritual';
-    }
-    if (spellDetails.concentration === false) {
-      $spellConc.textContent = 'Concentration: N/A';
-    } else {
-      $spellConc.textContent = 'Concentration: ' + spellDetails.duration;
-    }
-    $spellDesc.innerHTML = '';
-    for (var x = 0; x < spellDetails.desc.length; x++) {
-      var $p = document.createElement('p');
-      $p.textContent = spellDetails.desc[x];
-      $spellDesc.appendChild($p);
-    }
-    $spellComp.textContent = 'Components: ';
-    for (var y = 0; y < spellDetails.components.length; y++) {
-      var $span = document.createElement('span');
-      $span.textContent = spellDetails.components[y];
-      $spellComp.appendChild($span);
-    }
-
-  });
-  xhr.send();
-}
-
-var $mOverlay = document.getElementById('overlay');
 
 $mOverlay.addEventListener('click', function (event) {
   if (event.target === $mOverlay) {
@@ -260,17 +186,16 @@ $mOverlay.addEventListener('click', function (event) {
   }
 });
 
-function getClassSpellData(name) {
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://www.dnd5eapi.co/api/classes/' + name + '/spells/');
-  xhr.responseType = 'json';
-  xhr.addEventListener('load', function () {
-    data.curClass = [];
-    var classSpells = xhr.response;
-    data.curClass.push(classSpells.results);
-  });
-  xhr.send();
-}
+$classSpellList.addEventListener('click', function (event) {
+  $mOverlay.className = 'overlay';
+  getSpellDetails(event.target.textContent.split(' ').join('-').toLowerCase());
+});
+
+$mOverlay.addEventListener('click', function (event) {
+  if (event.target === $mOverlay) {
+    $mOverlay.className = 'overlay hidden';
+  }
+});
 
 $classNavBar.addEventListener('click', function (event) {
   if (event.target === $spellFilter) {
@@ -288,42 +213,6 @@ $classNavBar.addEventListener('click', function (event) {
     getSpellData('0');
   }
 });
-
-function getClassSpellLvlData(level) {
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://www.dnd5eapi.co/api/spells?level=' + level);
-  xhr.responseType = 'json';
-  xhr.addEventListener('load', function () {
-    var spellsLvl = xhr.response;
-    data.curLevel = [];
-    data.curLevel.push(spellsLvl.results);
-    var classObj = data.curClass[0];
-    var levelObj = data.curLevel[0];
-    for (var f = 0; f < levelObj.length; f++) {
-      for (var s = 0; s < classObj.length; s++) {
-        if (levelObj[f].name === classObj[s].name) {
-          var liItem = document.createElement('li');
-          liItem.textContent = levelObj[f].name;
-          $classSpellList.appendChild(liItem);
-        }
-      }
-    }
-  });
-  xhr.send();
-}
-
-$classSpellRow.addEventListener('click', function (event) {
-  $classSpellList.innerHTML = '';
-  if (event.target.value === '0') {
-    $classSpellTitle.textContent = 'Cantrips';
-  } else {
-    $classSpellTitle.textContent = 'Spell Level: ' + event.target.value;
-  }
-  currentSpellId = event.target.value;
-  getClassSpellLvlData(event.target.value);
-});
-
-var $diceBarImg = document.getElementById('diceBar');
 
 $diceBtnCol.addEventListener('click', function (event) {
 
@@ -359,6 +248,153 @@ $diceBtnCol.addEventListener('click', function (event) {
   }
 });
 
+$roll.addEventListener('click', function (event) {
+  diceRoll();
+});
+
+$classSpellRow.addEventListener('click', function (event) {
+  $classSpellList.innerHTML = '';
+  if (event.target.value === '0') {
+    $classSpellTitle.textContent = 'Cantrips';
+  } else {
+    $classSpellTitle.textContent = 'Spell Level: ' + event.target.value;
+  }
+  currentSpellId = event.target.value;
+  getClassSpellLvlData(event.target.value);
+});
+
+function getClassData(name) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://www.dnd5eapi.co/api/classes/' + name);
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', function () {
+    var classObj = xhr.response;
+    data.classObjPro = [];
+    data.classObjSave = [];
+    data.classObjPro.push(classObj.proficiencies);
+    data.classObjSave.push(classObj.saving_throws);
+    renderClassData();
+  });
+  xhr.send();
+}
+
+function getClassSpellData(name) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://www.dnd5eapi.co/api/classes/' + name + '/spells/');
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', function () {
+    data.curClass = [];
+    var classSpells = xhr.response;
+    data.curClass.push(classSpells.results);
+  });
+  xhr.send();
+}
+
+function getClassSpellLvlData(level) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://www.dnd5eapi.co/api/spells?level=' + level);
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', function () {
+    var spellsLvl = xhr.response;
+    data.curLevel = [];
+    data.curLevel.push(spellsLvl.results);
+    renderClassSpellPage();
+  });
+  xhr.send();
+}
+
+function getSpellData(level) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://www.dnd5eapi.co/api/spells?level=' + level);
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', function () {
+    var spells = xhr.response;
+    data.spellList = [];
+    data.spellList.push(spells.results);
+    renderSpellData();
+  });
+  xhr.send();
+}
+
+function getSpellDetails(name) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://www.dnd5eapi.co/api/spells/' + name);
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', function () {
+    data.spellDetails = [];
+    var spellDetails = xhr.response;
+    data.spellDetails.push(spellDetails);
+    renderSpellDetails();
+  });
+  xhr.send();
+}
+
+function renderSpellData() {
+  for (var z = 0; z < data.spellList[0].length; z++) {
+    var $spellLiItem = document.createElement('li');
+    $spellLiItem.textContent = data.spellList[0][z].name;
+    $spellList.appendChild($spellLiItem);
+  }
+}
+
+function renderSpellDetails() {
+  $spellName.textContent = 'Spell Name: ' + data.spellDetails[0].name;
+  $spellLevel.textContent = 'Spell Level: ' + data.spellDetails[0].level;
+  $spellSch.textContent = 'School: ' + data.spellDetails[0].school.name;
+  $spellCast.textContent = 'Casting Time: ' + data.spellDetails[0].casting_time;
+  $spellRng.textContent = 'Range: ' + data.spellDetails[0].range;
+  if (data.spellDetails[0].ritual === false) {
+    $spellRit.textContent = 'Ritual: Cannot be cast as a ritual';
+  } else {
+    $spellRit.textContent = 'Ritual: Can be cast as a ritual';
+  }
+  if (data.spellDetails[0].concentration === false) {
+    $spellConc.textContent = 'Concentration: N/A';
+  } else {
+    $spellConc.textContent = 'Concentration: ' + data.spellDetails[0].duration;
+  }
+  $spellDesc.innerHTML = '';
+  for (var x = 0; x < data.spellDetails[0].desc.length; x++) {
+    var $p = document.createElement('p');
+    $p.textContent = data.spellDetails[0].desc[x];
+    $spellDesc.appendChild($p);
+  }
+  $spellComp.textContent = 'Components: ';
+  for (var y = 0; y < data.spellDetails[0].components.length; y++) {
+    var $span = document.createElement('span');
+    $span.textContent = data.spellDetails[0].components[y];
+    $spellComp.appendChild($span);
+  }
+}
+
+function renderClassData() {
+  for (var x = 0; x < data.classObjPro[0].length; x++) {
+    var equipLiItem = document.createElement('li');
+    equipLiItem.textContent = data.classObjPro[0][x].name;
+    $equipLi.appendChild(equipLiItem);
+  }
+
+  for (var y = 0; y < data.classObjSave[0].length; y++) {
+    var savingThrowLiItem = document.createElement('li');
+    savingThrowLiItem.textContent = data.classObjSave[0][y].name;
+    $savingThrowLi.appendChild(savingThrowLiItem);
+  }
+}
+
+function renderClassSpellPage() {
+  var classObj = data.curClass[0];
+  var levelObj = data.curLevel[0];
+  for (var f = 0; f < levelObj.length; f++) {
+    for (var s = 0; s < classObj.length; s++) {
+      if (levelObj[f].name === classObj[s].name) {
+        var liItem = document.createElement('li');
+        liItem.textContent = levelObj[f].name;
+        $classSpellList.appendChild(liItem);
+      }
+    }
+  }
+}
+
 function diceRoll() {
   if ((parseInt($diceMod.value) > 0) && (parseInt($diceAmt.value) > 1)) {
     var resultGrp1 = [];
@@ -383,7 +419,3 @@ function diceRoll() {
     $rollResult.textContent = 'You rolled a D' + $curDie + ' for a total of ' + regRoll;
   }
 }
-
-$roll.addEventListener('click', function (event) {
-  diceRoll();
-});

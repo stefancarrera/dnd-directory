@@ -1,5 +1,9 @@
 /* exported data */
 var data = {
   curClass: [],
-  curLevel: []
+  curLevel: [],
+  classObjPro: [],
+  classObjSave: [],
+  spellList: [],
+  spellDetails: []
 };
