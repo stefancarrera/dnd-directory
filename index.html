@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AJAX Project</title>
+  <title>D&D Directory</title>
   <link rel="icon" href="images/favicon.ico">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
@@ -15,9 +15,10 @@
   <div class="container">
     <div class="row logoHeader">
         <object data="images/5eDndLogo.svg" type="image/svg+xml" class="dndLogo"></object>
+        <h1>Directory</h1>
       </div>
       <div class="redRow" id="topNav">
-        <button id="classNavBtn">Class</button>
+        <button id="classNavBtn" class="picked">Class</button>
         <button id="spellNavBtn">Spells</button>
         <button id="diceNavBtn">Dice</button>
       </div>
@@ -93,7 +94,6 @@
         <ul id="classSpellList">
         </ul>
       </div>
-      <!--DICE PAGE-->
       <div class="contentBody hidden" id="diceBody">
         <div class="classNav row" id="diceNavBar">
           <h2 class="diceH2">Dice Roller</h2>
@@ -109,6 +109,7 @@
             <button class="diceBtn" value="4">D4 <img src="images/dice/d4-fill.svg" class="icon dice svg" id="d4"></button>
           </div>
           <div class="colThreeFour">
+            <img src="images/animated/D4.gif" class="hidden" id="diceGif">
             <img src="images/dice/d20-fill.svg" class="bigDie">
           </div>
         </div>
@@ -140,8 +141,6 @@
             </div>
           </div>
       </div>
-
-      <!--Modal Div-->
       <div class="overlay hidden" id="overlay">
         <div class="modal">
           <div class="redRow mRow">

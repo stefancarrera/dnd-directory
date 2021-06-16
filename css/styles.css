@@ -7,6 +7,12 @@ body {
   background-color: #333;
 }
 
+h1 {
+  margin-left: 1.5rem;
+  font-family: 'Cinzel', serif;
+  text-shadow: 2px 0 0 #f7ce65, -2px 0 0 #f7ce65, 0 2px 0 #f7ce65, 0 -2px 0 #f7ce65, 1px 1px #f7ce65, -1px -1px 0 #f7ce65, 1px -1px 0 #f7ce65, -1px 1px 0 #f7ce65;
+}
+
 h2,
 h3 {
   font-family: 'Cinzel', serif;
@@ -150,6 +156,11 @@ li {
   height: 400px;
 }
 
+.animated {
+  position: absolute;
+  height: 400px;
+}
+
 .colFourth {
   padding-top: 0.5rem;
   display: flex;
@@ -230,6 +241,18 @@ label {
   }
 
   .diceBtn {
-    width: 110px;
+    width: 90px;
+  }
+
+  .modal {
+    width: 350px;
+  }
+
+  .bigDie {
+    width: 200px;
+  }
+
+  .icon {
+    width: 25px;
   }
 }
