@@ -325,6 +325,12 @@ function renderClassData() {
 }
 
 function renderClassSpellPage() {
+  if (($classSelect.value === 'barbarian') || ($classSelect.value === 'fighter') || ($classSelect.value === 'monk') || ($classSelect.value === 'rogue')) {
+    var $noSpellLiItem = document.createElement('li');
+    $noSpellLiItem.textContent = "This class doesn't have access to spells.";
+    $classSpellList.appendChild($noSpellLiItem);
+  }
+
   var classObj = data.curClass[0];
   var levelObj = data.curLevel[0];
   for (var f = 0; f < levelObj.length; f++) {
