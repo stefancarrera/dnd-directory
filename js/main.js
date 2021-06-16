@@ -41,9 +41,13 @@ var $diceBtnCol = document.querySelector('.colFourth');
 var $curDie = '';
 var $mOverlay = document.getElementById('overlay');
 var $diceBarImg = document.getElementById('diceBar');
+var $diceGif = document.getElementById('diceGif');
 
 $topNav.addEventListener('click', function (event) {
   if (event.target === $classNavBtn) {
+    $classNavBtn.className = 'picked';
+    $spellNavBtn.className = '';
+    $diceNavBtn.className = '';
     $classBody.className = 'contentBody';
     $spellBody.className = 'contentBody hidden';
     $spellFilter.className = 'filterBtn hidden';
@@ -52,6 +56,9 @@ $topNav.addEventListener('click', function (event) {
     $diceBody.className = 'contentBody hidden';
   }
   if (event.target === $spellNavBtn) {
+    $classNavBtn.className = '';
+    $spellNavBtn.className = 'picked';
+    $diceNavBtn.className = '';
     $classBody.className = 'contentBody hidden';
     $spellBody.className = 'contentBody';
     $classSpellBody.className = 'contentBody hidden';
@@ -61,6 +68,9 @@ $topNav.addEventListener('click', function (event) {
     $diceBody.className = 'contentBody hidden';
   }
   if (event.target === $diceNavBtn) {
+    $classNavBtn.className = '';
+    $spellNavBtn.className = '';
+    $diceNavBtn.className = 'picked';
     $classBody.className = 'contentBody hidden';
     $spellBody.className = 'contentBody hidden';
     $classSpellBody.className = 'contentBody hidden';
@@ -181,6 +191,8 @@ $diceBtnCol.addEventListener('click', function (event) {
 
 $roll.addEventListener('click', function (event) {
   diceRoll();
+  gifStart();
+  setTimeout(gifStop, 1100);
 });
 
 $classSpellRow.addEventListener('click', function (event) {
@@ -349,4 +361,35 @@ function diceRoll() {
     var regRoll = Math.floor(Math.random() * $curDie) + 1;
     $rollResult.textContent = 'You rolled a D' + $curDie + ' for a total of ' + regRoll;
   }
+}
+
+function gifStart() {
+  if ($curDie === '20') {
+    $diceGif.setAttribute('src', 'images/animated/D20.gif');
+    $diceGif.className = 'animated';
+  }
+  if ($curDie === '12') {
+    $diceGif.setAttribute('src', 'images/animated/D12.gif');
+    $diceGif.className = 'animated';
+  }
+  if ($curDie === '10') {
+    $diceGif.setAttribute('src', 'images/animated/D10.gif');
+    $diceGif.className = 'animated';
+  }
+  if ($curDie === '8') {
+    $diceGif.setAttribute('src', 'images/animated/D8.gif');
+    $diceGif.className = 'animated';
+  }
+  if ($curDie === '6') {
+    $diceGif.setAttribute('src', 'images/animated/D6.gif');
+    $diceGif.className = 'animated';
+  }
+  if ($curDie === '4') {
+    $diceGif.setAttribute('src', 'images/animated/D4.gif');
+    $diceGif.className = 'animated';
+  }
+}
+
+function gifStop() {
+  $diceGif.className = 'hidden';
 }

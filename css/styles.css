@@ -156,6 +156,11 @@ li {
   height: 400px;
 }
 
+.animated {
+  position: absolute;
+  height: 400px;
+}
+
 .colFourth {
   padding-top: 0.5rem;
   display: flex;
@@ -236,6 +241,18 @@ label {
   }
 
   .diceBtn {
-    width: 110px;
+    width: 90px;
+  }
+
+  .modal {
+    width: 350px;
+  }
+
+  .bigDie {
+    width: 200px;
+  }
+
+  .icon {
+    width: 25px;
   }
 }
