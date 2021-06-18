@@ -1,5 +1,5 @@
-/* eslint-disable no-unused-vars */
 /* exported data */
+/* exported classDesc */
 var data = {
   curClass: [],
   curLevel: [],

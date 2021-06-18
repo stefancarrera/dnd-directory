@@ -1,3 +1,4 @@
+/* global classDesc */
 var $classSelect = document.querySelector('#classSelect');
 var $descP = document.querySelector('.descText');
 var $equipLi = document.querySelector('#equipLi');
@@ -82,15 +83,10 @@ $topNav.addEventListener('click', function (event) {
 });
 
 $classSelect.addEventListener('change', function (event) {
-  // eslint-disable-next-line no-undef
   for (var i = 0; i < classDesc.length; i++) {
-    // eslint-disable-next-line no-undef
     if (event.target.value === classDesc[i].name) {
-      // eslint-disable-next-line no-undef
       $classIcon.setAttribute('src', classDesc[i].img);
-      // eslint-disable-next-line no-undef
       $descP.textContent = classDesc[i].desc;
-      // eslint-disable-next-line no-undef
       $priAbil.textContent = classDesc[i].primary;
       $classSpellList.innerHTML = '';
     }
@@ -103,20 +99,17 @@ $classSelect.addEventListener('change', function (event) {
 });
 
 $spellRow.addEventListener('click', function (event) {
-
-  if (event.target.id === '0') {
-    $spellTitle.textContent = 'Cantrips';
-    $spellList.innerHTML = '';
-    getSpellData(event.target.id);
-  // eslint-disable-next-line no-empty
-  } if (event.target.id === 'spellRow') {
-
-  } else {
-    $spellTitle.textContent = 'Spell Level: ' + event.target.id;
-    $spellList.innerHTML = '';
-    getSpellData(event.target.id);
+  if (event.target.id !== 'spellRow') {
+    if (event.target.id === '0') {
+      $spellTitle.textContent = 'Cantrips';
+      $spellList.innerHTML = '';
+      getSpellData(event.target.id);
+    } else {
+      $spellTitle.textContent = 'Spell Level: ' + event.target.id;
+      $spellList.innerHTML = '';
+      getSpellData(event.target.id);
+    }
   }
-
 });
 
 $spellList.addEventListener('click', function (event) {
@@ -125,19 +118,18 @@ $spellList.addEventListener('click', function (event) {
 });
 
 $classSpellRow.addEventListener('click', function (event) {
-  if (event.target.value === '0') {
-    $classSpellTitle.textContent = 'Cantrips';
-    $classSpellList.innerHTML = '';
-    currentSpellId = event.target.value;
-    getClassSpellLvlData(event.target.value);
-  // eslint-disable-next-line no-empty
-  } if (event.target.id === 'classSpellRow') {
-
-  } else {
-    $classSpellTitle.textContent = 'Spell Level: ' + event.target.value;
-    $classSpellList.innerHTML = '';
-    currentSpellId = event.target.value;
-    getClassSpellLvlData(event.target.value);
+  if (event.target.id !== 'classSpellRow') {
+    if (event.target.value === '0') {
+      $classSpellTitle.textContent = 'Cantrips';
+      $classSpellList.innerHTML = '';
+      currentSpellId = event.target.value;
+      getClassSpellLvlData(event.target.value);
+    } else {
+      $classSpellTitle.textContent = 'Spell Level: ' + event.target.value;
+      $classSpellList.innerHTML = '';
+      currentSpellId = event.target.value;
+      getClassSpellLvlData(event.target.value);
+    }
   }
 });
 
