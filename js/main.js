@@ -1,4 +1,4 @@
-
+/* global classDesc */
 var $classSelect = document.querySelector('#classSelect');
 var $descP = document.querySelector('.descText');
 var $equipLi = document.querySelector('#equipLi');
@@ -54,6 +54,7 @@ $topNav.addEventListener('click', function (event) {
     $allSpellsBtn.className = 'allSpells picked hidden';
     $classNavBar.className = 'row classNav';
     $diceBody.className = 'contentBody hidden';
+    $classSpellBody.className = 'contentBody hidden';
   }
   if (event.target === $spellNavBtn) {
     $classNavBtn.className = '';
@@ -78,47 +79,58 @@ $topNav.addEventListener('click', function (event) {
     $diceBody.className = 'contentBody';
     $diceAmt.value = '1';
     $diceMod.value = '0';
-
   }
 });
 
 $classSelect.addEventListener('change', function (event) {
-  // eslint-disable-next-line no-undef
   for (var i = 0; i < classDesc.length; i++) {
-    // eslint-disable-next-line no-undef
     if (event.target.value === classDesc[i].name) {
-      // eslint-disable-next-line no-undef
       $classIcon.setAttribute('src', classDesc[i].img);
-      // eslint-disable-next-line no-undef
       $descP.textContent = classDesc[i].desc;
-      // eslint-disable-next-line no-undef
       $priAbil.textContent = classDesc[i].primary;
+      $classSpellList.innerHTML = '';
     }
   }
   $savingThrowLi.innerHTML = '';
   $equipLi.innerHTML = '';
-  getClassData(event.target.value);
-  getClassSpellData(event.target.value);
-
-  if ($classSpellBody.className !== 'contentBody hidden') {
-    $classSpellList.innerHTML = '';
-    getClassSpellLvlData(currentSpellId);
-  }
+  $classSpellList.innerHTML = '';
+  getClassData($classSelect.value);
+  getClassSpellData($classSelect.value);
 });
 
 $spellRow.addEventListener('click', function (event) {
-  $spellList.innerHTML = '';
-  getSpellData(event.target.id);
-  if (event.target.id === '0') {
-    $spellTitle.textContent = 'Cantrips';
-  } else {
-    $spellTitle.textContent = 'Spell Level: ' + event.target.id;
+  if (event.target.id !== 'spellRow') {
+    if (event.target.id === '0') {
+      $spellTitle.textContent = 'Cantrips';
+      $spellList.innerHTML = '';
+      getSpellData(event.target.id);
+    } else {
+      $spellTitle.textContent = 'Spell Level: ' + event.target.id;
+      $spellList.innerHTML = '';
+      getSpellData(event.target.id);
+    }
   }
 });
 
 $spellList.addEventListener('click', function (event) {
   $mOverlay.className = 'overlay';
   getSpellDetails(event.target.textContent.split(' ').join('-').toLowerCase());
+});
+
+$classSpellRow.addEventListener('click', function (event) {
+  if (event.target.id !== 'classSpellRow') {
+    if (event.target.value === '0') {
+      $classSpellTitle.textContent = 'Cantrips';
+      $classSpellList.innerHTML = '';
+      currentSpellId = event.target.value;
+      getClassSpellLvlData(event.target.value);
+    } else {
+      $classSpellTitle.textContent = 'Spell Level: ' + event.target.value;
+      $classSpellList.innerHTML = '';
+      currentSpellId = event.target.value;
+      getClassSpellLvlData(event.target.value);
+    }
+  }
 });
 
 $mOverlay.addEventListener('click', function (event) {
@@ -138,21 +150,18 @@ $mOverlay.addEventListener('click', function (event) {
   }
 });
 
-$classNavBar.addEventListener('click', function (event) {
-  if (event.target === $spellFilter) {
-    $spellFilter.className = 'filterBtn picked';
-    $allSpellsBtn.className = 'allSpells';
-    $spellBody.className = 'contentBody hidden';
-    $classSpellBody.className = 'contentBody';
-  }
+$spellFilter.addEventListener('click', function (event) {
+  $spellFilter.className = 'filterBtn picked';
+  $allSpellsBtn.className = 'allSpells';
+  $spellBody.className = 'contentBody hidden';
+  $classSpellBody.className = 'contentBody';
+});
 
-  if (event.target === $allSpellsBtn) {
-    $allSpellsBtn.className = 'allSpells picked';
-    $spellFilter.className = 'filterBtn';
-    $spellBody.className = 'contentBody';
-    $classSpellBody.className = 'contentBody hidden';
-    getSpellData('0');
-  }
+$allSpellsBtn.addEventListener('click', function (event) {
+  $allSpellsBtn.className = 'allSpells picked';
+  $spellFilter.className = 'filterBtn';
+  $spellBody.className = 'contentBody';
+  $classSpellBody.className = 'contentBody hidden';
 });
 
 $diceBtnCol.addEventListener('click', function (event) {
@@ -195,17 +204,6 @@ $roll.addEventListener('click', function (event) {
   setTimeout(gifStop, 1100);
 });
 
-$classSpellRow.addEventListener('click', function (event) {
-  $classSpellList.innerHTML = '';
-  if (event.target.value === '0') {
-    $classSpellTitle.textContent = 'Cantrips';
-  } else {
-    $classSpellTitle.textContent = 'Spell Level: ' + event.target.value;
-  }
-  currentSpellId = event.target.value;
-  getClassSpellLvlData(event.target.value);
-});
-
 function getClassData(name) {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://www.dnd5eapi.co/api/classes/' + name);
@@ -229,6 +227,7 @@ function getClassSpellData(name) {
     data.curClass = [];
     var classSpells = xhr.response;
     data.curClass.push(classSpells.results);
+    getClassSpellLvlData(currentSpellId);
   });
   xhr.send();
 }
@@ -327,19 +326,24 @@ function renderClassData() {
 function renderClassSpellPage() {
   if (($classSelect.value === 'barbarian') || ($classSelect.value === 'fighter') || ($classSelect.value === 'monk') || ($classSelect.value === 'rogue')) {
     var $noSpellLiItem = document.createElement('li');
-    $noSpellLiItem.textContent = "This class doesn't have access to spells.";
+    $noSpellLiItem.textContent = 'This class does not have access to spells.';
     $classSpellList.appendChild($noSpellLiItem);
-  }
-
-  var classObj = data.curClass[0];
-  var levelObj = data.curLevel[0];
-  for (var f = 0; f < levelObj.length; f++) {
-    for (var s = 0; s < classObj.length; s++) {
-      if (levelObj[f].name === classObj[s].name) {
-        var liItem = document.createElement('li');
-        liItem.textContent = levelObj[f].name;
-        $classSpellList.appendChild(liItem);
+  } else {
+    var classObj = data.curClass[0];
+    var levelObj = data.curLevel[0];
+    for (var f = 0; f < levelObj.length; f++) {
+      for (var s = 0; s < classObj.length; s++) {
+        if (levelObj[f].name === classObj[s].name) {
+          var liItem = document.createElement('li');
+          liItem.textContent = levelObj[f].name;
+          $classSpellList.appendChild(liItem);
+        }
       }
+    }
+    if ($classSpellList.innerHTML === '') {
+      var $noLvlSpellLiItem = document.createElement('li');
+      $noLvlSpellLiItem.textContent = 'This class does not have access to spells of this level.';
+      $classSpellList.appendChild($noLvlSpellLiItem);
     }
   }
 }
@@ -394,8 +398,10 @@ function gifStart() {
     $diceGif.setAttribute('src', 'images/animated/D4.gif');
     $diceGif.className = 'animated';
   }
+  $roll.disabled = true;
 }
 
 function gifStop() {
+  $roll.disabled = false;
   $diceGif.className = 'hidden';
 }
