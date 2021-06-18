@@ -1,4 +1,3 @@
-
 var $classSelect = document.querySelector('#classSelect');
 var $descP = document.querySelector('.descText');
 var $equipLi = document.querySelector('#equipLi');
@@ -54,6 +53,7 @@ $topNav.addEventListener('click', function (event) {
     $allSpellsBtn.className = 'allSpells picked hidden';
     $classNavBar.className = 'row classNav';
     $diceBody.className = 'contentBody hidden';
+    $classSpellBody.className = 'contentBody hidden';
   }
   if (event.target === $spellNavBtn) {
     $classNavBtn.className = '';
@@ -78,7 +78,6 @@ $topNav.addEventListener('click', function (event) {
     $diceBody.className = 'contentBody';
     $diceAmt.value = '1';
     $diceMod.value = '0';
-
   }
 });
 
@@ -93,17 +92,14 @@ $classSelect.addEventListener('change', function (event) {
       $descP.textContent = classDesc[i].desc;
       // eslint-disable-next-line no-undef
       $priAbil.textContent = classDesc[i].primary;
+      $classSpellList.innerHTML = '';
     }
   }
   $savingThrowLi.innerHTML = '';
   $equipLi.innerHTML = '';
-  getClassData(event.target.value);
-  getClassSpellData(event.target.value);
-
-  if ($classSpellBody.className !== 'contentBody hidden') {
-    $classSpellList.innerHTML = '';
-    getClassSpellLvlData(currentSpellId);
-  }
+  $classSpellList.innerHTML = '';
+  getClassData($classSelect.value);
+  getClassSpellData($classSelect.value);
 });
 
 $spellRow.addEventListener('click', function (event) {
@@ -138,21 +134,18 @@ $mOverlay.addEventListener('click', function (event) {
   }
 });
 
-$classNavBar.addEventListener('click', function (event) {
-  if (event.target === $spellFilter) {
-    $spellFilter.className = 'filterBtn picked';
-    $allSpellsBtn.className = 'allSpells';
-    $spellBody.className = 'contentBody hidden';
-    $classSpellBody.className = 'contentBody';
-  }
+$spellFilter.addEventListener('click', function (event) {
+  $spellFilter.className = 'filterBtn picked';
+  $allSpellsBtn.className = 'allSpells';
+  $spellBody.className = 'contentBody hidden';
+  $classSpellBody.className = 'contentBody';
+});
 
-  if (event.target === $allSpellsBtn) {
-    $allSpellsBtn.className = 'allSpells picked';
-    $spellFilter.className = 'filterBtn';
-    $spellBody.className = 'contentBody';
-    $classSpellBody.className = 'contentBody hidden';
-    getSpellData('0');
-  }
+$allSpellsBtn.addEventListener('click', function (event) {
+  $allSpellsBtn.className = 'allSpells picked';
+  $spellFilter.className = 'filterBtn';
+  $spellBody.className = 'contentBody';
+  $classSpellBody.className = 'contentBody hidden';
 });
 
 $diceBtnCol.addEventListener('click', function (event) {
@@ -229,6 +222,7 @@ function getClassSpellData(name) {
     data.curClass = [];
     var classSpells = xhr.response;
     data.curClass.push(classSpells.results);
+    getClassSpellLvlData(currentSpellId);
   });
   xhr.send();
 }
@@ -329,16 +323,16 @@ function renderClassSpellPage() {
     var $noSpellLiItem = document.createElement('li');
     $noSpellLiItem.textContent = "This class doesn't have access to spells.";
     $classSpellList.appendChild($noSpellLiItem);
-  }
-
-  var classObj = data.curClass[0];
-  var levelObj = data.curLevel[0];
-  for (var f = 0; f < levelObj.length; f++) {
-    for (var s = 0; s < classObj.length; s++) {
-      if (levelObj[f].name === classObj[s].name) {
-        var liItem = document.createElement('li');
-        liItem.textContent = levelObj[f].name;
-        $classSpellList.appendChild(liItem);
+  } else {
+    var classObj = data.curClass[0];
+    var levelObj = data.curLevel[0];
+    for (var f = 0; f < levelObj.length; f++) {
+      for (var s = 0; s < classObj.length; s++) {
+        if (levelObj[f].name === classObj[s].name) {
+          var liItem = document.createElement('li');
+          liItem.textContent = levelObj[f].name;
+          $classSpellList.appendChild(liItem);
+        }
       }
     }
   }
