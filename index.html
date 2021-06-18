@@ -111,34 +111,37 @@
           <div class="colThreeFour">
             <img src="images/animated/D4.gif" class="hidden" id="diceGif">
             <img src="images/dice/d20-fill.svg" class="bigDie">
+            <p class="diceP" id="rollResult"></p>
           </div>
         </div>
-          <div class="col">
+          <div class="rollRow">
             <form>
-              <div class="row">
+              <div>
                 <label>Number of Dice</label>
                 <input
                 name="diceAmt"
                 type="number"
                 min="1"
                 id="diceAmt"
+                size="2"
                 placeholder="Enter the amount of dice to be rolled">
-              </div>
-              <div class="row">
                 <label>Modifier</label>
                 <input
                 name="diceMod"
                 type="number"
                 min="0"
+                size="2"
                 id="diceMod"
                 placeholder="Enter your roll modifier">
+                <button class="roll" id="roll">Roll</button>
               </div>
+              <!-- <div class="row">
+              </div> -->
             </form>
-            <button id="roll">Roll</button>
-            <div class="row mRow">
-              <p>Your roll result:</p>
-              <p id="rollResult"></p>
-            </div>
+            <!-- <div class="row mRow">
+              <!-- <p>Your roll result:</p> -->
+              <!-- <p id="rollResult"></p> -->
+            <!-- </div> -->
           </div>
       </div>
       <div class="overlay hidden" id="overlay">
