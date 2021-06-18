@@ -42,6 +42,8 @@ var $curDie = '';
 var $mOverlay = document.getElementById('overlay');
 var $diceBarImg = document.getElementById('diceBar');
 var $diceGif = document.getElementById('diceGif');
+var $spellBtn = document.querySelectorAll('.spellBtn');
+var $classSpellBtn = document.querySelectorAll('.classSpellBtn');
 
 $topNav.addEventListener('click', function (event) {
   if (event.target === $classNavBtn) {
@@ -55,6 +57,7 @@ $topNav.addEventListener('click', function (event) {
     $classNavBar.className = 'row classNav';
     $diceBody.className = 'contentBody hidden';
     $classSpellBody.className = 'contentBody hidden';
+    $rollResult.className = 'diceP hidden';
   }
   if (event.target === $spellNavBtn) {
     $classNavBtn.className = '';
@@ -67,6 +70,7 @@ $topNav.addEventListener('click', function (event) {
     $spellFilter.className = 'filterBtn';
     $allSpellsBtn.className = 'allSpells picked';
     $diceBody.className = 'contentBody hidden';
+    $rollResult.className = 'diceP hidden';
   }
   if (event.target === $diceNavBtn) {
     $classNavBtn.className = '';
@@ -100,15 +104,22 @@ $classSelect.addEventListener('change', function (event) {
 
 $spellRow.addEventListener('click', function (event) {
   if (event.target.id !== 'spellRow') {
+    for (var i = 0; i < $spellBtn.length; i++) {
+      $spellBtn[i].className = 'spellBtn';
+    }
     if (event.target.id === '0') {
       $spellTitle.textContent = 'Cantrips';
       $spellList.innerHTML = '';
       getSpellData(event.target.id);
+      if (event.target.id === '0') {
+        $spellBtn.className = 'spellBtn picked';
+      }
     } else {
       $spellTitle.textContent = 'Spell Level: ' + event.target.id;
       $spellList.innerHTML = '';
       getSpellData(event.target.id);
     }
+    event.target.className = 'spellBtn picked';
   }
 });
 
@@ -119,6 +130,9 @@ $spellList.addEventListener('click', function (event) {
 
 $classSpellRow.addEventListener('click', function (event) {
   if (event.target.id !== 'classSpellRow') {
+    for (var i = 0; i < $classSpellBtn.length; i++) {
+      $classSpellBtn[i].className = 'spellBtn';
+    }
     if (event.target.value === '0') {
       $classSpellTitle.textContent = 'Cantrips';
       $classSpellList.innerHTML = '';
@@ -130,6 +144,7 @@ $classSpellRow.addEventListener('click', function (event) {
       currentSpellId = event.target.value;
       getClassSpellLvlData(event.target.value);
     }
+    event.target.className = 'classSpellBtn picked';
   }
 });
 
@@ -170,35 +185,45 @@ $diceBtnCol.addEventListener('click', function (event) {
     $bigDie.setAttribute('src', 'images/dice/d20-fill.svg');
     $diceBarImg.setAttribute('src', 'images/dice/d20-fill.svg');
     $curDie = '20';
+    $rollResult.className = 'diceP hidden';
   }
   if ((event.target.value === '12') || (event.target.id === 'd12')) {
     $bigDie.setAttribute('src', 'images/dice/d12-fill.svg');
     $diceBarImg.setAttribute('src', 'images/dice/d12-fill.svg');
     $curDie = '12';
+    $rollResult.className = 'diceP hidden';
   }
   if ((event.target.value === '10') || (event.target.id === 'd10')) {
     $bigDie.setAttribute('src', 'images/dice/d10-fill.svg');
     $diceBarImg.setAttribute('src', 'images/dice/d10-fill.svg');
     $curDie = '10';
+    $rollResult.className = 'diceP hidden';
   }
   if ((event.target.value === '8') || (event.target.id === 'd8')) {
     $bigDie.setAttribute('src', 'images/dice/d8-fill.svg');
     $diceBarImg.setAttribute('src', 'images/dice/d8-fill.svg');
     $curDie = '8';
+    $rollResult.className = 'diceP hidden';
   }
   if ((event.target.value === '6') || (event.target.id === 'd6')) {
     $bigDie.setAttribute('src', 'images/dice/d6-fill.svg');
     $diceBarImg.setAttribute('src', 'images/dice/d6-fill.svg');
     $curDie = '6';
+    $rollResult.className = 'diceP hidden';
   }
   if ((event.target.value === '4') || (event.target.id === 'd4')) {
     $bigDie.setAttribute('src', 'images/dice/d4-fill.svg');
     $diceBarImg.setAttribute('src', 'images/dice/d4-fill.svg');
     $curDie = '4';
+    $rollResult.className = 'diceP hidden';
   }
+
+  $diceMod.value = 0;
+  $diceAmt.value = 1;
 });
 
 $roll.addEventListener('click', function (event) {
+  $rollResult.className = 'diceP';
   diceRoll();
   gifStart();
   setTimeout(gifStop, 1100);
