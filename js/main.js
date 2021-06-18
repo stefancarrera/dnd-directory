@@ -388,8 +388,10 @@ function gifStart() {
     $diceGif.setAttribute('src', 'images/animated/D4.gif');
     $diceGif.className = 'animated';
   }
+  $roll.disabled = true;
 }
 
 function gifStop() {
+  $roll.disabled = false;
   $diceGif.className = 'hidden';
 }
