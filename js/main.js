@@ -217,6 +217,9 @@ $diceBtnCol.addEventListener('click', function (event) {
     $curDie = '4';
     $rollResult.className = 'diceP hidden';
   }
+
+  $diceMod.value = 0;
+  $diceAmt.value = 1;
 });
 
 $roll.addEventListener('click', function (event) {
