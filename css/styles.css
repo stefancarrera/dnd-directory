@@ -272,6 +272,10 @@ label {
     margin: auto;
   }
 
+  .spellBtn {
+    padding: 2px;
+  }
+
   .diceBtn {
     width: 90px;
   }
