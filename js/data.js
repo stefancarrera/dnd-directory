@@ -1,6 +1,6 @@
 /* exported data */
 /* exported classDesc */
-var data = {
+let data = {
   curClass: [],
   curLevel: [],
   classObjPro: [],
@@ -9,7 +9,7 @@ var data = {
   spellDetails: []
 };
 
-var classDesc = [
+const classDesc = [
   {
     name: 'barbarian',
     desc: 'A fierce warrior of primitive background who can enter a battle rage. Barbarians thrive in the wilds of their homelands: the tundra, jungle, or grasslands where their tribes live and hunt. They embrace their animal nature — keen instincts, primal physicality, ferocious rage and come alive in the chaos of combat. They can enter a berserk state where rage takes over, giving them superhuman strength and resilience.',
