@@ -1,6 +1,6 @@
 /* exported data */
 /* exported classDesc */
-let data = {
+const data = {
   curClass: [],
   curLevel: [],
   classObjPro: [],
