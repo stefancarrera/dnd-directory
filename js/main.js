@@ -1,49 +1,49 @@
 /* global classDesc */
-var $classSelect = document.querySelector('#classSelect');
-var $descP = document.querySelector('.descText');
-var $equipLi = document.querySelector('#equipLi');
-var $savingThrowLi = document.querySelector('#savingThrowsLi');
-var $classIcon = document.querySelector('#classIcon');
-var $priAbil = document.querySelector('.priAbil');
-var $classNavBtn = document.getElementById('classNavBtn');
-var $spellNavBtn = document.getElementById('spellNavBtn');
-var $topNav = document.getElementById('topNav');
-var $classBody = document.getElementById('classBody');
-var $spellBody = document.getElementById('spellBody');
-var $spellFilter = document.querySelector('#spellFilter');
-var $allSpellsBtn = document.getElementById('allSpellsBtn');
-var $spellRow = document.querySelector('#spellRow');
-var $spellTitle = document.querySelector('#spellTitle');
-var $spellList = document.getElementById('spellList');
-var $spellDesc = document.querySelector('#spellDesc');
-var $spellName = document.querySelector('#spellName');
-var $spellLevel = document.querySelector('#spellLevel');
-var $spellSch = document.querySelector('#spellSch');
-var $spellConc = document.querySelector('#spellConc');
-var $spellComp = document.querySelector('#spellComp');
-var $spellCast = document.querySelector('#spellCast');
-var $spellRng = document.querySelector('#spellRng');
-var $spellRit = document.querySelector('#spellRit');
-var $classSpellBody = document.querySelector('#classSpellBody');
-var $classNavBar = document.querySelector('#classNav');
-var $classSpellRow = document.querySelector('#classSpellRow');
-var $classSpellList = document.getElementById('classSpellList');
-var $classSpellTitle = document.querySelector('#classSpellTitle');
-var currentSpellId = '';
-var $diceNavBtn = document.getElementById('diceNavBtn');
-var $diceBody = document.getElementById('diceBody');
-var $diceAmt = document.querySelector('#diceAmt');
-var $diceMod = document.querySelector('#diceMod');
-var $rollResult = document.querySelector('#rollResult');
-var $roll = document.querySelector('#roll');
-var $bigDie = document.querySelector('.bigDie');
-var $diceBtnCol = document.querySelector('.colFourth');
-var $curDie = '';
-var $mOverlay = document.getElementById('overlay');
-var $diceBarImg = document.getElementById('diceBar');
-var $diceGif = document.getElementById('diceGif');
-var $spellBtn = document.querySelectorAll('.spellBtn');
-var $classSpellBtn = document.querySelectorAll('.classSpellBtn');
+const $classSelect = document.querySelector('#classSelect');
+const $descP = document.querySelector('.descText');
+const $equipLi = document.querySelector('#equipLi');
+const $savingThrowLi = document.querySelector('#savingThrowsLi');
+const $classIcon = document.querySelector('#classIcon');
+const $priAbil = document.querySelector('.priAbil');
+const $classNavBtn = document.getElementById('classNavBtn');
+const $spellNavBtn = document.getElementById('spellNavBtn');
+const $topNav = document.getElementById('topNav');
+const $classBody = document.getElementById('classBody');
+const $spellBody = document.getElementById('spellBody');
+const $spellFilter = document.querySelector('#spellFilter');
+const $allSpellsBtn = document.getElementById('allSpellsBtn');
+const $spellRow = document.querySelector('#spellRow');
+const $spellTitle = document.querySelector('#spellTitle');
+const $spellList = document.getElementById('spellList');
+const $spellDesc = document.querySelector('#spellDesc');
+const $spellName = document.querySelector('#spellName');
+const $spellLevel = document.querySelector('#spellLevel');
+const $spellSch = document.querySelector('#spellSch');
+const $spellConc = document.querySelector('#spellConc');
+const $spellComp = document.querySelector('#spellComp');
+const $spellCast = document.querySelector('#spellCast');
+const $spellRng = document.querySelector('#spellRng');
+const $spellRit = document.querySelector('#spellRit');
+const $classSpellBody = document.querySelector('#classSpellBody');
+const $classNavBar = document.querySelector('#classNav');
+const $classSpellRow = document.querySelector('#classSpellRow');
+const $classSpellList = document.getElementById('classSpellList');
+const $classSpellTitle = document.querySelector('#classSpellTitle');
+const $diceNavBtn = document.getElementById('diceNavBtn');
+const $diceBody = document.getElementById('diceBody');
+const $diceAmt = document.querySelector('#diceAmt');
+const $diceMod = document.querySelector('#diceMod');
+const $rollResult = document.querySelector('#rollResult');
+const $roll = document.querySelector('#roll');
+const $bigDie = document.querySelector('.bigDie');
+const $diceBtnCol = document.querySelector('.colFourth');
+const $mOverlay = document.getElementById('overlay');
+const $diceBarImg = document.getElementById('diceBar');
+const $diceGif = document.getElementById('diceGif');
+const $spellBtn = document.querySelectorAll('.spellBtn');
+const $classSpellBtn = document.querySelectorAll('.classSpellBtn');
+let $curDie = '';
+let currentSpellId = '';
 
 $topNav.addEventListener('click', function (event) {
   if (event.target === $classNavBtn) {
@@ -87,7 +87,7 @@ $topNav.addEventListener('click', function (event) {
 });
 
 $classSelect.addEventListener('change', function (event) {
-  for (var i = 0; i < classDesc.length; i++) {
+  for (let i = 0; i < classDesc.length; i++) {
     if (event.target.value === classDesc[i].name) {
       $classIcon.setAttribute('src', classDesc[i].img);
       $descP.textContent = classDesc[i].desc;
@@ -104,7 +104,7 @@ $classSelect.addEventListener('change', function (event) {
 
 $spellRow.addEventListener('click', function (event) {
   if (event.target.id !== 'spellRow') {
-    for (var i = 0; i < $spellBtn.length; i++) {
+    for (let i = 0; i < $spellBtn.length; i++) {
       $spellBtn[i].className = 'spellBtn';
     }
     if (event.target.id === '0') {
@@ -115,7 +115,7 @@ $spellRow.addEventListener('click', function (event) {
         $spellBtn.className = 'spellBtn picked';
       }
     } else {
-      $spellTitle.textContent = 'Spell Level: ' + event.target.id;
+      $spellTitle.textContent = `Spell Level: ${event.target.id}`;
       $spellList.innerHTML = '';
       getSpellData(event.target.id);
     }
@@ -130,7 +130,7 @@ $spellList.addEventListener('click', function (event) {
 
 $classSpellRow.addEventListener('click', function (event) {
   if (event.target.id !== 'classSpellRow') {
-    for (var i = 0; i < $classSpellBtn.length; i++) {
+    for (let i = 0; i < $classSpellBtn.length; i++) {
       $classSpellBtn[i].className = 'spellBtn';
     }
     if (event.target.value === '0') {
@@ -139,7 +139,7 @@ $classSpellRow.addEventListener('click', function (event) {
       currentSpellId = event.target.value;
       getClassSpellLvlData(event.target.value);
     } else {
-      $classSpellTitle.textContent = 'Spell Level: ' + event.target.value;
+      $classSpellTitle.textContent = `Spell Level: ${event.target.value}`;
       $classSpellList.innerHTML = '';
       currentSpellId = event.target.value;
       getClassSpellLvlData(event.target.value);
@@ -186,32 +186,27 @@ $diceBtnCol.addEventListener('click', function (event) {
     $diceBarImg.setAttribute('src', 'images/dice/d20-fill.svg');
     $curDie = '20';
     $rollResult.className = 'diceP hidden';
-  }
-  if ((event.target.value === '12') || (event.target.id === 'd12')) {
+  } else if ((event.target.value === '12') || (event.target.id === 'd12')) {
     $bigDie.setAttribute('src', 'images/dice/d12-fill.svg');
     $diceBarImg.setAttribute('src', 'images/dice/d12-fill.svg');
     $curDie = '12';
     $rollResult.className = 'diceP hidden';
-  }
-  if ((event.target.value === '10') || (event.target.id === 'd10')) {
+  } else if ((event.target.value === '10') || (event.target.id === 'd10')) {
     $bigDie.setAttribute('src', 'images/dice/d10-fill.svg');
     $diceBarImg.setAttribute('src', 'images/dice/d10-fill.svg');
     $curDie = '10';
     $rollResult.className = 'diceP hidden';
-  }
-  if ((event.target.value === '8') || (event.target.id === 'd8')) {
+  } else if ((event.target.value === '8') || (event.target.id === 'd8')) {
     $bigDie.setAttribute('src', 'images/dice/d8-fill.svg');
     $diceBarImg.setAttribute('src', 'images/dice/d8-fill.svg');
     $curDie = '8';
     $rollResult.className = 'diceP hidden';
-  }
-  if ((event.target.value === '6') || (event.target.id === 'd6')) {
+  } else if ((event.target.value === '6') || (event.target.id === 'd6')) {
     $bigDie.setAttribute('src', 'images/dice/d6-fill.svg');
     $diceBarImg.setAttribute('src', 'images/dice/d6-fill.svg');
     $curDie = '6';
     $rollResult.className = 'diceP hidden';
-  }
-  if ((event.target.value === '4') || (event.target.id === 'd4')) {
+  } else if ((event.target.value === '4') || (event.target.id === 'd4')) {
     $bigDie.setAttribute('src', 'images/dice/d4-fill.svg');
     $diceBarImg.setAttribute('src', 'images/dice/d4-fill.svg');
     $curDie = '4';
@@ -230,11 +225,11 @@ $roll.addEventListener('click', function (event) {
 });
 
 function getClassData(name) {
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://www.dnd5eapi.co/api/classes/' + name);
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', `https://www.dnd5eapi.co/api/classes/${name}`);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
-    var classObj = xhr.response;
+    const classObj = xhr.response;
     data.classObjPro = [];
     data.classObjSave = [];
     data.classObjPro.push(classObj.proficiencies);
@@ -245,12 +240,12 @@ function getClassData(name) {
 }
 
 function getClassSpellData(name) {
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://www.dnd5eapi.co/api/classes/' + name + '/spells/');
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', `https://www.dnd5eapi.co/api/classes/${name}/spells/`);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     data.curClass = [];
-    var classSpells = xhr.response;
+    const classSpells = xhr.response;
     data.curClass.push(classSpells.results);
     getClassSpellLvlData(currentSpellId);
   });
@@ -258,11 +253,11 @@ function getClassSpellData(name) {
 }
 
 function getClassSpellLvlData(level) {
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://www.dnd5eapi.co/api/spells?level=' + level);
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', `https://www.dnd5eapi.co/api/spells?level=${level}`);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
-    var spellsLvl = xhr.response;
+    const spellsLvl = xhr.response;
     data.curLevel = [];
     data.curLevel.push(spellsLvl.results);
     renderClassSpellPage();
@@ -271,11 +266,11 @@ function getClassSpellLvlData(level) {
 }
 
 function getSpellData(level) {
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://www.dnd5eapi.co/api/spells?level=' + level);
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', `https://www.dnd5eapi.co/api/spells?level=${level}`);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
-    var spells = xhr.response;
+    const spells = xhr.response;
     data.spellList = [];
     data.spellList.push(spells.results);
     renderSpellData();
@@ -284,12 +279,12 @@ function getSpellData(level) {
 }
 
 function getSpellDetails(name) {
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://www.dnd5eapi.co/api/spells/' + name);
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', `https://www.dnd5eapi.co/api/spells/${name}`);
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     data.spellDetails = [];
-    var spellDetails = xhr.response;
+    const spellDetails = xhr.response;
     data.spellDetails.push(spellDetails);
     renderSpellDetails();
   });
@@ -297,19 +292,19 @@ function getSpellDetails(name) {
 }
 
 function renderSpellData() {
-  for (var z = 0; z < data.spellList[0].length; z++) {
-    var $spellLiItem = document.createElement('li');
+  for (let z = 0; z < data.spellList[0].length; z++) {
+    const $spellLiItem = document.createElement('li');
     $spellLiItem.textContent = data.spellList[0][z].name;
     $spellList.appendChild($spellLiItem);
   }
 }
 
 function renderSpellDetails() {
-  $spellName.textContent = 'Spell Name: ' + data.spellDetails[0].name;
-  $spellLevel.textContent = 'Spell Level: ' + data.spellDetails[0].level;
-  $spellSch.textContent = 'School: ' + data.spellDetails[0].school.name;
-  $spellCast.textContent = 'Casting Time: ' + data.spellDetails[0].casting_time;
-  $spellRng.textContent = 'Range: ' + data.spellDetails[0].range;
+  $spellName.textContent = `Spell Name: ${data.spellDetails[0].name}`;
+  $spellLevel.textContent = `Spell Level: ${data.spellDetails[0].level}`;
+  $spellSch.textContent = `School: ${data.spellDetails[0].school.name}`;
+  $spellCast.textContent = `Casting Time: ${data.spellDetails[0].casting_time}`;
+  $spellRng.textContent = `Range: ${data.spellDetails[0].range}`;
   if (data.spellDetails[0].ritual === false) {
     $spellRit.textContent = 'Ritual: Cannot be cast as a ritual';
   } else {
@@ -318,31 +313,31 @@ function renderSpellDetails() {
   if (data.spellDetails[0].concentration === false) {
     $spellConc.textContent = 'Concentration: N/A';
   } else {
-    $spellConc.textContent = 'Concentration: ' + data.spellDetails[0].duration;
+    $spellConc.textContent = `Concentration: ${data.spellDetails[0].duration}`;
   }
   $spellDesc.innerHTML = '';
-  for (var x = 0; x < data.spellDetails[0].desc.length; x++) {
-    var $p = document.createElement('p');
+  for (let x = 0; x < data.spellDetails[0].desc.length; x++) {
+    const $p = document.createElement('p');
     $p.textContent = data.spellDetails[0].desc[x];
     $spellDesc.appendChild($p);
   }
   $spellComp.textContent = 'Components: ';
-  for (var y = 0; y < data.spellDetails[0].components.length; y++) {
-    var $span = document.createElement('span');
+  for (let y = 0; y < data.spellDetails[0].components.length; y++) {
+    const $span = document.createElement('span');
     $span.textContent = data.spellDetails[0].components[y];
     $spellComp.appendChild($span);
   }
 }
 
 function renderClassData() {
-  for (var x = 0; x < data.classObjPro[0].length; x++) {
-    var equipLiItem = document.createElement('li');
+  for (let x = 0; x < data.classObjPro[0].length; x++) {
+    const equipLiItem = document.createElement('li');
     equipLiItem.textContent = data.classObjPro[0][x].name;
     $equipLi.appendChild(equipLiItem);
   }
 
-  for (var y = 0; y < data.classObjSave[0].length; y++) {
-    var savingThrowLiItem = document.createElement('li');
+  for (let y = 0; y < data.classObjSave[0].length; y++) {
+    const savingThrowLiItem = document.createElement('li');
     savingThrowLiItem.textContent = data.classObjSave[0][y].name;
     $savingThrowLi.appendChild(savingThrowLiItem);
   }
@@ -350,23 +345,23 @@ function renderClassData() {
 
 function renderClassSpellPage() {
   if (($classSelect.value === 'barbarian') || ($classSelect.value === 'fighter') || ($classSelect.value === 'monk') || ($classSelect.value === 'rogue')) {
-    var $noSpellLiItem = document.createElement('li');
+    const $noSpellLiItem = document.createElement('li');
     $noSpellLiItem.textContent = 'This class does not have access to spells.';
     $classSpellList.appendChild($noSpellLiItem);
   } else {
-    var classObj = data.curClass[0];
-    var levelObj = data.curLevel[0];
-    for (var f = 0; f < levelObj.length; f++) {
-      for (var s = 0; s < classObj.length; s++) {
+    const classObj = data.curClass[0];
+    const levelObj = data.curLevel[0];
+    for (let f = 0; f < levelObj.length; f++) {
+      for (let s = 0; s < classObj.length; s++) {
         if (levelObj[f].name === classObj[s].name) {
-          var liItem = document.createElement('li');
+          const liItem = document.createElement('li');
           liItem.textContent = levelObj[f].name;
           $classSpellList.appendChild(liItem);
         }
       }
     }
     if ($classSpellList.innerHTML === '') {
-      var $noLvlSpellLiItem = document.createElement('li');
+      const $noLvlSpellLiItem = document.createElement('li');
       $noLvlSpellLiItem.textContent = 'This class does not have access to spells of this level.';
       $classSpellList.appendChild($noLvlSpellLiItem);
     }
@@ -375,26 +370,26 @@ function renderClassSpellPage() {
 
 function diceRoll() {
   if ((parseInt($diceMod.value) > 0) && (parseInt($diceAmt.value) > 1)) {
-    var resultGrp1 = [];
-    for (var i = 0; i < parseInt($diceAmt.value); i++) {
+    const resultGrp1 = [];
+    for (let i = 0; i < parseInt($diceAmt.value); i++) {
       resultGrp1.push(Math.floor(Math.random() * $curDie) + 1);
     }
-    var finalResult1 = (resultGrp1.reduce((a, b) => a + b, 0)) + parseInt($diceMod.value);
-    $rollResult.textContent = 'You rolled a ' + $diceAmt.value + 'D' + $curDie + ' with a modifier of ' + $diceMod.value + ' for ' + resultGrp1.join(', ') + ' with a total of ' + finalResult1;
+    const finalResult1 = (resultGrp1.reduce((a, b) => a + b, 0)) + parseInt($diceMod.value);
+    $rollResult.textContent = `You rolled a ${$diceAmt.value} D${$curDie} with a modifier of ${$diceMod.value} for ${resultGrp1.join(', ')} with a total of ${finalResult1}`;
   } else if ((parseInt($diceMod.value) >= 1) && (parseInt($diceAmt.value) < 2)) {
-    var roll = Math.floor(Math.random() * $curDie) + 1;
-    var result = parseInt($diceMod.value) + roll;
-    $rollResult.textContent = 'You rolled a D' + $curDie + ' with a modifier of ' + $diceMod.value + ' for a total of ' + result;
+    const roll = Math.floor(Math.random() * $curDie) + 1;
+    const result = parseInt($diceMod.value) + roll;
+    $rollResult.textContent = `You rolled a D${$curDie} with a modifier of ${$diceMod.value} for a total of ${result}`;
   } else if ((parseInt($diceAmt.value) >= 2) && (parseInt($diceMod.value) < 1)) {
-    var resultGrp = [];
-    for (var y = 0; y < parseInt($diceAmt.value); y++) {
+    const resultGrp = [];
+    for (let y = 0; y < parseInt($diceAmt.value); y++) {
       resultGrp.push(Math.floor(Math.random() * $curDie) + 1);
     }
-    var finalResult = resultGrp.reduce((a, b) => a + b, 0);
-    $rollResult.textContent = 'You rolled a ' + $diceAmt.value + 'D' + $curDie + ' for ' + resultGrp.join(', ') + ' with a total of ' + finalResult;
+    const finalResult = resultGrp.reduce((a, b) => a + b, 0);
+    $rollResult.textContent = `You rolled a ${$diceAmt.value} D${$curDie} for ${resultGrp.join(', ')} with a total of ${finalResult}`;
   } else {
-    var regRoll = Math.floor(Math.random() * $curDie) + 1;
-    $rollResult.textContent = 'You rolled a D' + $curDie + ' for a total of ' + regRoll;
+    const regRoll = Math.floor(Math.random() * $curDie) + 1;
+    $rollResult.textContent = `You rolled a D${$curDie} for a total of ${regRoll}`;
   }
 }
 
@@ -402,24 +397,19 @@ function gifStart() {
   if ($curDie === '20') {
     $diceGif.setAttribute('src', 'images/animated/D20.gif');
     $diceGif.className = 'animated';
-  }
-  if ($curDie === '12') {
+  } else if ($curDie === '12') {
     $diceGif.setAttribute('src', 'images/animated/D12.gif');
     $diceGif.className = 'animated';
-  }
-  if ($curDie === '10') {
+  } else if ($curDie === '10') {
     $diceGif.setAttribute('src', 'images/animated/D10.gif');
     $diceGif.className = 'animated';
-  }
-  if ($curDie === '8') {
+  } else if ($curDie === '8') {
     $diceGif.setAttribute('src', 'images/animated/D8.gif');
     $diceGif.className = 'animated';
-  }
-  if ($curDie === '6') {
+  } else if ($curDie === '6') {
     $diceGif.setAttribute('src', 'images/animated/D6.gif');
     $diceGif.className = 'animated';
-  }
-  if ($curDie === '4') {
+  } else if ($curDie === '4') {
     $diceGif.setAttribute('src', 'images/animated/D4.gif');
     $diceGif.className = 'animated';
   }
