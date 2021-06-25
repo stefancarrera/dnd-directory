@@ -186,32 +186,27 @@ $diceBtnCol.addEventListener('click', function (event) {
     $diceBarImg.setAttribute('src', 'images/dice/d20-fill.svg');
     $curDie = '20';
     $rollResult.className = 'diceP hidden';
-  }
-  if ((event.target.value === '12') || (event.target.id === 'd12')) {
+  } else if ((event.target.value === '12') || (event.target.id === 'd12')) {
     $bigDie.setAttribute('src', 'images/dice/d12-fill.svg');
     $diceBarImg.setAttribute('src', 'images/dice/d12-fill.svg');
     $curDie = '12';
     $rollResult.className = 'diceP hidden';
-  }
-  if ((event.target.value === '10') || (event.target.id === 'd10')) {
+  } else if ((event.target.value === '10') || (event.target.id === 'd10')) {
     $bigDie.setAttribute('src', 'images/dice/d10-fill.svg');
     $diceBarImg.setAttribute('src', 'images/dice/d10-fill.svg');
     $curDie = '10';
     $rollResult.className = 'diceP hidden';
-  }
-  if ((event.target.value === '8') || (event.target.id === 'd8')) {
+  } else if ((event.target.value === '8') || (event.target.id === 'd8')) {
     $bigDie.setAttribute('src', 'images/dice/d8-fill.svg');
     $diceBarImg.setAttribute('src', 'images/dice/d8-fill.svg');
     $curDie = '8';
     $rollResult.className = 'diceP hidden';
-  }
-  if ((event.target.value === '6') || (event.target.id === 'd6')) {
+  } else if ((event.target.value === '6') || (event.target.id === 'd6')) {
     $bigDie.setAttribute('src', 'images/dice/d6-fill.svg');
     $diceBarImg.setAttribute('src', 'images/dice/d6-fill.svg');
     $curDie = '6';
     $rollResult.className = 'diceP hidden';
-  }
-  if ((event.target.value === '4') || (event.target.id === 'd4')) {
+  } else if ((event.target.value === '4') || (event.target.id === 'd4')) {
     $bigDie.setAttribute('src', 'images/dice/d4-fill.svg');
     $diceBarImg.setAttribute('src', 'images/dice/d4-fill.svg');
     $curDie = '4';
@@ -402,24 +397,19 @@ function gifStart() {
   if ($curDie === '20') {
     $diceGif.setAttribute('src', 'images/animated/D20.gif');
     $diceGif.className = 'animated';
-  }
-  if ($curDie === '12') {
+  } else if ($curDie === '12') {
     $diceGif.setAttribute('src', 'images/animated/D12.gif');
     $diceGif.className = 'animated';
-  }
-  if ($curDie === '10') {
+  } else if ($curDie === '10') {
     $diceGif.setAttribute('src', 'images/animated/D10.gif');
     $diceGif.className = 'animated';
-  }
-  if ($curDie === '8') {
+  } else if ($curDie === '8') {
     $diceGif.setAttribute('src', 'images/animated/D8.gif');
     $diceGif.className = 'animated';
-  }
-  if ($curDie === '6') {
+  } else if ($curDie === '6') {
     $diceGif.setAttribute('src', 'images/animated/D6.gif');
     $diceGif.className = 'animated';
-  }
-  if ($curDie === '4') {
+  } else if ($curDie === '4') {
     $diceGif.setAttribute('src', 'images/animated/D4.gif');
     $diceGif.className = 'animated';
   }
