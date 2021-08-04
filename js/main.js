@@ -294,6 +294,7 @@ function getSpellDetails(name) {
 function renderSpellData() {
   for (let z = 0; z < data.spellList[0].length; z++) {
     const $spellLiItem = document.createElement('li');
+    $spellLiItem.className = 'pointer';
     $spellLiItem.textContent = data.spellList[0][z].name;
     $spellList.appendChild($spellLiItem);
   }
@@ -355,6 +356,7 @@ function renderClassSpellPage() {
       for (let s = 0; s < classObj.length; s++) {
         if (levelObj[f].name === classObj[s].name) {
           const liItem = document.createElement('li');
+          liItem.className = 'pointer';
           liItem.textContent = levelObj[f].name;
           $classSpellList.appendChild(liItem);
         }
