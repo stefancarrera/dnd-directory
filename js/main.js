@@ -1,10 +1,10 @@
 /* global classDesc */
 const $classSelect = document.querySelector('#classSelect');
-const $descP = document.querySelector('.descText');
+const $descP = document.querySelector('.desc-text');
 const $equipLi = document.querySelector('#equipLi');
 const $savingThrowLi = document.querySelector('#savingThrowsLi');
 const $classIcon = document.querySelector('#classIcon');
-const $priAbil = document.querySelector('.priAbil');
+const $priAbil = document.querySelector('.pri-abil');
 const $classNavBtn = document.getElementById('classNavBtn');
 const $spellNavBtn = document.getElementById('spellNavBtn');
 const $topNav = document.getElementById('topNav');
@@ -35,13 +35,13 @@ const $diceAmt = document.querySelector('#diceAmt');
 const $diceMod = document.querySelector('#diceMod');
 const $rollResult = document.querySelector('#rollResult');
 const $roll = document.querySelector('#roll');
-const $bigDie = document.querySelector('.bigDie');
-const $diceBtnCol = document.querySelector('.colFourth');
+const $bigDie = document.querySelector('.big-die');
+const $diceBtnCol = document.querySelector('.col-fourth');
 const $mOverlay = document.getElementById('overlay');
 const $diceBarImg = document.getElementById('diceBar');
 const $diceGif = document.getElementById('diceGif');
-const $spellBtn = document.querySelectorAll('.spellBtn');
-const $classSpellBtn = document.querySelectorAll('.classSpellBtn');
+const $spellBtn = document.querySelectorAll('.spell-btn');
+const $classSpellBtn = document.querySelectorAll('.class-spell-btn');
 let $curDie = '';
 let currentSpellId = '';
 
@@ -50,37 +50,37 @@ $topNav.addEventListener('click', function (event) {
     $classNavBtn.className = 'picked';
     $spellNavBtn.className = '';
     $diceNavBtn.className = '';
-    $classBody.className = 'contentBody';
-    $spellBody.className = 'contentBody hidden';
-    $spellFilter.className = 'filterBtn hidden';
-    $allSpellsBtn.className = 'allSpells picked hidden';
-    $classNavBar.className = 'row classNav';
-    $diceBody.className = 'contentBody hidden';
-    $classSpellBody.className = 'contentBody hidden';
-    $rollResult.className = 'diceP hidden';
+    $classBody.className = 'content-body';
+    $spellBody.className = 'content-body hidden';
+    $spellFilter.className = 'filter-btn hidden';
+    $allSpellsBtn.className = 'all-spells picked hidden';
+    $classNavBar.className = 'row class-nav';
+    $diceBody.className = 'content-body hidden';
+    $classSpellBody.className = 'content-body hidden';
+    $rollResult.className = 'dice-p hidden';
   }
   if (event.target === $spellNavBtn) {
     $classNavBtn.className = '';
     $spellNavBtn.className = 'picked';
     $diceNavBtn.className = '';
-    $classBody.className = 'contentBody hidden';
-    $spellBody.className = 'contentBody';
-    $classSpellBody.className = 'contentBody hidden';
-    $classNavBar.className = 'row classNav';
-    $spellFilter.className = 'filterBtn';
-    $allSpellsBtn.className = 'allSpells picked';
-    $diceBody.className = 'contentBody hidden';
-    $rollResult.className = 'diceP hidden';
+    $classBody.className = 'content-body hidden';
+    $spellBody.className = 'content-body';
+    $classSpellBody.className = 'content-body hidden';
+    $classNavBar.className = 'row class-nav';
+    $spellFilter.className = 'filter-btn';
+    $allSpellsBtn.className = 'all-spells picked';
+    $diceBody.className = 'content-body hidden';
+    $rollResult.className = 'dice-p hidden';
   }
   if (event.target === $diceNavBtn) {
     $classNavBtn.className = '';
     $spellNavBtn.className = '';
     $diceNavBtn.className = 'picked';
-    $classBody.className = 'contentBody hidden';
-    $spellBody.className = 'contentBody hidden';
-    $classSpellBody.className = 'contentBody hidden';
-    $classNavBar.className = 'row classNav hidden';
-    $diceBody.className = 'contentBody';
+    $classBody.className = 'content-body hidden';
+    $spellBody.className = 'content-body hidden';
+    $classSpellBody.className = 'content-body hidden';
+    $classNavBar.className = 'row class-nav hidden';
+    $diceBody.className = 'content-body';
     $diceAmt.value = '1';
     $diceMod.value = '0';
   }
@@ -105,21 +105,21 @@ $classSelect.addEventListener('change', function (event) {
 $spellRow.addEventListener('click', function (event) {
   if (event.target.id !== 'spellRow') {
     for (let i = 0; i < $spellBtn.length; i++) {
-      $spellBtn[i].className = 'spellBtn';
+      $spellBtn[i].className = 'spell-btn';
     }
     if (event.target.id === '0') {
       $spellTitle.textContent = 'Cantrips';
       $spellList.innerHTML = '';
       getSpellData(event.target.id);
       if (event.target.id === '0') {
-        $spellBtn.className = 'spellBtn picked';
+        $spellBtn.className = 'spell-btn picked';
       }
     } else {
       $spellTitle.textContent = `Spell Level: ${event.target.id}`;
       $spellList.innerHTML = '';
       getSpellData(event.target.id);
     }
-    event.target.className = 'spellBtn picked';
+    event.target.className = 'spell-btn picked';
   }
 });
 
@@ -131,7 +131,7 @@ $spellList.addEventListener('click', function (event) {
 $classSpellRow.addEventListener('click', function (event) {
   if (event.target.id !== 'classSpellRow') {
     for (let i = 0; i < $classSpellBtn.length; i++) {
-      $classSpellBtn[i].className = 'spellBtn';
+      $classSpellBtn[i].className = 'spell-btn';
     }
     if (event.target.value === '0') {
       $classSpellTitle.textContent = 'Cantrips';
@@ -144,7 +144,7 @@ $classSpellRow.addEventListener('click', function (event) {
       currentSpellId = event.target.value;
       getClassSpellLvlData(event.target.value);
     }
-    event.target.className = 'classSpellBtn picked';
+    event.target.className = 'class-spell-btn picked';
   }
 });
 
@@ -166,17 +166,17 @@ $mOverlay.addEventListener('click', function (event) {
 });
 
 $spellFilter.addEventListener('click', function (event) {
-  $spellFilter.className = 'filterBtn picked';
-  $allSpellsBtn.className = 'allSpells';
-  $spellBody.className = 'contentBody hidden';
-  $classSpellBody.className = 'contentBody';
+  $spellFilter.className = 'filter-btn picked';
+  $allSpellsBtn.className = 'all-spells';
+  $spellBody.className = 'content-body hidden';
+  $classSpellBody.className = 'content-body';
 });
 
 $allSpellsBtn.addEventListener('click', function (event) {
-  $allSpellsBtn.className = 'allSpells picked';
-  $spellFilter.className = 'filterBtn';
-  $spellBody.className = 'contentBody';
-  $classSpellBody.className = 'contentBody hidden';
+  $allSpellsBtn.className = 'all-spells picked';
+  $spellFilter.className = 'filter-btn';
+  $spellBody.className = 'content-body';
+  $classSpellBody.className = 'content-body hidden';
 });
 
 $diceBtnCol.addEventListener('click', function (event) {
@@ -185,32 +185,32 @@ $diceBtnCol.addEventListener('click', function (event) {
     $bigDie.setAttribute('src', 'images/dice/d20-fill.svg');
     $diceBarImg.setAttribute('src', 'images/dice/d20-fill.svg');
     $curDie = '20';
-    $rollResult.className = 'diceP hidden';
+    $rollResult.className = 'dice-p hidden';
   } else if ((event.target.value === '12') || (event.target.id === 'd12')) {
     $bigDie.setAttribute('src', 'images/dice/d12-fill.svg');
     $diceBarImg.setAttribute('src', 'images/dice/d12-fill.svg');
     $curDie = '12';
-    $rollResult.className = 'diceP hidden';
+    $rollResult.className = 'dice-p hidden';
   } else if ((event.target.value === '10') || (event.target.id === 'd10')) {
     $bigDie.setAttribute('src', 'images/dice/d10-fill.svg');
     $diceBarImg.setAttribute('src', 'images/dice/d10-fill.svg');
     $curDie = '10';
-    $rollResult.className = 'diceP hidden';
+    $rollResult.className = 'dice-p hidden';
   } else if ((event.target.value === '8') || (event.target.id === 'd8')) {
     $bigDie.setAttribute('src', 'images/dice/d8-fill.svg');
     $diceBarImg.setAttribute('src', 'images/dice/d8-fill.svg');
     $curDie = '8';
-    $rollResult.className = 'diceP hidden';
+    $rollResult.className = 'dice-p hidden';
   } else if ((event.target.value === '6') || (event.target.id === 'd6')) {
     $bigDie.setAttribute('src', 'images/dice/d6-fill.svg');
     $diceBarImg.setAttribute('src', 'images/dice/d6-fill.svg');
     $curDie = '6';
-    $rollResult.className = 'diceP hidden';
+    $rollResult.className = 'dice-p hidden';
   } else if ((event.target.value === '4') || (event.target.id === 'd4')) {
     $bigDie.setAttribute('src', 'images/dice/d4-fill.svg');
     $diceBarImg.setAttribute('src', 'images/dice/d4-fill.svg');
     $curDie = '4';
-    $rollResult.className = 'diceP hidden';
+    $rollResult.className = 'dice-p hidden';
   }
 
   $diceMod.value = 0;
@@ -218,7 +218,7 @@ $diceBtnCol.addEventListener('click', function (event) {
 });
 
 $roll.addEventListener('click', function (event) {
-  $rollResult.className = 'diceP';
+  $rollResult.className = 'dice-p';
   diceRoll();
   gifStart();
   setTimeout(gifStop, 1100);
