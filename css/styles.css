@@ -262,6 +262,10 @@ li {
   margin-left: 2rem;
 }
 
+.diceCounterRow {
+  display: flex;
+}
+
 input {
   width: 50px;
   margin: 1rem 0;
@@ -306,11 +310,27 @@ select {
     margin-left: 0.5rem;
   }
 
-  .rollRow {
-    justify-content: start;
+  .diceP {
+    width: 250px;
   }
 
-  .diceP {
-    width: 300px;
+  .diceRow {
+    height: 500px;
+  }
+
+  .colThreeFour {
+    padding-top: 45px;
+  }
+
+  .allSpells {
+    width: 150px;
+  }
+
+  .filterBtn {
+    width: 150px;
+  }
+
+  .diceCounterRow {
+    flex-direction: column;
   }
 }

@@ -116,24 +116,28 @@
         </div>
           <div class="rollRow">
             <form>
-              <div>
-                <label>Number of Dice</label>
-                <input
-                name="diceAmt"
-                type="number"
-                min="1"
-                id="diceAmt"
-                size="2"
-                placeholder="Enter the amount of dice to be rolled">
-                <label>Modifier</label>
-                <input
-                name="diceMod"
-                type="number"
-                min="0"
-                size="2"
-                id="diceMod"
-                placeholder="Enter your roll modifier">
-                <button class="roll" id="roll">Roll</button>
+              <div class="diceCounterRow">
+                <div class="row">
+                  <label for="diceAmt">Number of Dice</label>
+                  <input
+                  name="diceAmt"
+                  type="number"
+                  min="1"
+                  id="diceAmt"
+                  size="2"
+                  placeholder="Enter the amount of dice to be rolled">
+                </div>
+                <div class="row">
+                  <label for="diceMod">Modifier</label>
+                  <input
+                  name="diceMod"
+                  type="number"
+                  min="0"
+                  size="2"
+                  id="diceMod"
+                  placeholder="Enter your roll modifier">
+                  <button class="roll" id="roll">Roll</button>
+                </div>
               </div>
             </form>
           </div>
