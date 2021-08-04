@@ -74,7 +74,6 @@ button {
   font-size: 20px;
   font-weight: bold;
   text-shadow: 2px 0 0 #f7ce65, -2px 0 0 #f7ce65, 0 2px 0 #f7ce65, 0 -2px 0 #f7ce65, 1px 1px #f7ce65, -1px -1px 0 #f7ce65, 1px -1px 0 #f7ce65, -1px 1px 0 #f7ce65;
-  width: 90px;
   height: 30px;
   background: #930c10;
   border: 2px solid #f7ce65;
@@ -163,6 +162,10 @@ button:hover {
   width: 500px;
   background-color: rgba(41, 0, 0, 0.8);
   border: solid 2px rgba(247, 206, 101, 0.8);
+}
+
+.pointer {
+  cursor: pointer;
 }
 
 p {
