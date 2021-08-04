@@ -35,22 +35,22 @@ h3 {
   flex-wrap: wrap;
 }
 
-.diceRow {
+.dice-row {
   display: flex;
 }
 
-.dndLogo {
+.dnd-logo {
   width: 100px;
   margin-left: 1rem;
 }
 
-.logoHeader {
+.logo-header {
   background-color: #290000;
   border: 2px solid #f7ce65;
   width: 100%;
 }
 
-.redRow {
+.red-row {
   background-color: #930c10;
   border: 2px solid #f7ce65;
   width: 100%;
@@ -58,7 +58,7 @@ h3 {
   align-items: center;
 }
 
-.rollRow {
+.roll-row {
   color: white;
   background-color: #930c10;
   border: 2px solid #f7ce65;
@@ -89,15 +89,15 @@ button:hover {
   color: white;
 }
 
-.spellBtn {
+.spell-btn {
   width: 100%;
 }
 
-.classSpellBtn {
+.class-spell-btn {
   width: 100%;
 }
 
-.diceBtn {
+.dice-btn {
   height: 55px;
   width: 125px;
   display: flex;
@@ -115,7 +115,7 @@ button:hover {
   color: white;
 }
 
-.classSelect {
+.class-select {
   font-family: 'Mate SC', serif;
   font-size: 25px;
   font-weight: bold;
@@ -131,14 +131,14 @@ button:hover {
   height: 50px;
 }
 
-.classNav {
+.class-nav {
   width: 100%;
   background-color: #290000;
   border: 2px solid #f7ce65;
   justify-content: space-between;
 }
 
-.contentBody {
+.content-body {
   background-color: white;
   min-width: 100%;
   border: 2px solid #f7ce65;
@@ -148,12 +148,12 @@ button:hover {
   margin-right: 0.25rem;
 }
 
-.diceH2 {
+.dice-h2 {
   color: white;
   text-shadow: 2px 0 0 #290000, -2px 0 0 #290000, 0 2px 0 #290000, 0 -2px 0 #290000, 1px 1px #290000, -1px -1px 0 #290000, 1px -1px 0 #290000, -1px 1px 0 #290000;
 }
 
-.diceP {
+.dice-p {
   color: white;
   font-size: 25px;
   margin-top: 10rem;
@@ -177,13 +177,13 @@ li {
   font-size: 20px;
 }
 
-.colHalf {
+.col-half {
   display: flex;
   flex-direction: column;
   width: 50%;
 }
 
-.bigDie {
+.big-die {
   height: 400px;
 }
 
@@ -192,7 +192,7 @@ li {
   height: 400px;
 }
 
-.colFourth {
+.col-fourth {
   padding-top: 0.5rem;
   display: flex;
   flex-direction: column;
@@ -202,7 +202,7 @@ li {
   border: 2px solid #f7ce65;
 }
 
-.colThreeFour {
+.col-three-four {
   padding-top: 0.5rem;
   display: flex;
   flex-direction: column;
@@ -242,19 +242,19 @@ li {
   overflow: auto;
 }
 
-.mRow {
+.m-row {
   justify-content: space-between;
 }
 
-.pModal {
+.p-modal {
   color: white;
 }
 
-.filterBtn {
+.filter-btn {
   width: 200px;
 }
 
-.allSpells {
+.all-spells {
   width: 150px;
 }
 
@@ -262,7 +262,7 @@ li {
   margin-left: 2rem;
 }
 
-.diceCounterRow {
+.dice-counter-row {
   display: flex;
 }
 
@@ -286,11 +286,11 @@ select {
     margin: auto;
   }
 
-  .spellBtn {
+  .spell-btn {
     padding: 2px;
   }
 
-  .diceBtn {
+  .dice-btn {
     width: 90px;
   }
 
@@ -298,7 +298,7 @@ select {
     width: 300px;
   }
 
-  .bigDie {
+  .big-die {
     width: 200px;
   }
 
@@ -310,27 +310,27 @@ select {
     margin-left: 0.5rem;
   }
 
-  .diceP {
+  .dice-p {
     width: 250px;
   }
 
-  .diceRow {
+  .dice-row {
     height: 500px;
   }
 
-  .colThreeFour {
+  .col-three-four {
     padding-top: 45px;
   }
 
-  .allSpells {
+  .all-spells {
     width: 150px;
   }
 
-  .filterBtn {
+  .filter-btn {
     width: 150px;
   }
 
-  .diceCounterRow {
+  .dice-counter-row {
     flex-direction: column;
   }
 }

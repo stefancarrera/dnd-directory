@@ -13,17 +13,17 @@
 </head>
 <body>
   <div class="container">
-    <div class="row logoHeader">
-        <object data="images/5eDndLogo.svg" type="image/svg+xml" class="dndLogo"></object>
+    <div class="row logo-header">
+        <object data="images/5eDndLogo.svg" type="image/svg+xml" class="dnd-logo"></object>
         <h1>Directory</h1>
       </div>
-      <div class="redRow" id="topNav">
+      <div class="red-row" id="topNav">
         <button id="classNavBtn" class="picked">Class</button>
         <button id="spellNavBtn">Spells</button>
         <button id="diceNavBtn">Dice</button>
       </div>
-      <div class="row classNav" id="classNav">
-        <select class="classSelect" id="classSelect">
+      <div class="row class-nav" id="classNav">
+        <select class="class-select" id="classSelect">
           <option default>Select Your Class</option>
           <option value="barbarian">Barbarian</option>
           <option value="bard">Bard</option>
@@ -38,85 +38,85 @@
           <option value="warlock">Warlock</option>
           <option value="wizard">Wizard</option>
         </select>
-        <button class="allSpells hidden" id="allSpellsBtn">All Spells</button>
-        <button class="filterBtn hidden" id="spellFilter">Spells by Class</button>
+        <button class="all-spells hidden" id="allSpellsBtn">All Spells</button>
+        <button class="filter-btn hidden" id="spellFilter">Spells by Class</button>
         <img src="images/class-icons/barbarian.svg" class="icon" id="classIcon">
       </div>
-      <div class="contentBody" id="classBody">
-        <div class="redRow">
+      <div class="content-body" id="classBody">
+        <div class="red-row">
           <h2>Description</h2>
         </div>
-        <p class="descText"></p>
-        <div class="redRow">
+        <p class="desc-text"></p>
+        <div class="red-row">
           <h2>Abilities</h2>
         </div>
         <h3>Primary Ability</h3>
-        <p class="priAbil"></p>
+        <p class="pri-abil"></p>
           <h3>Saving Throws</h3>
           <ul id="savingThrowsLi"></ul>
-          <div class="redRow">
+          <div class="red-row">
           <h2>Proficiencies</h2>
         </div>
           <h3>Armor and Weapons</h3>
           <ul id="equipLi">
           </ul>
       </div>
-      <div class="contentBody hidden" id="spellBody">
-        <div class="redRow" id="spellRow">
-          <button class="spellBtn" id="0">Cantrips</button>
-          <button class="spellBtn" id="1">1</button>
-          <button class="spellBtn" id="2">2</button>
-          <button class="spellBtn" id="3">3</button>
-          <button class="spellBtn" id="4">4</button>
-          <button class="spellBtn" id="5">5</button>
-          <button class="spellBtn" id="6">6</button>
-          <button class="spellBtn" id="7">7</button>
-          <button class="spellBtn" id="8">8</button>
-          <button class="spellBtn" id="9">9</button>
+      <div class="content-body hidden" id="spellBody">
+        <div class="red-row" id="spellRow">
+          <button class="spell-btn" id="0">Cantrips</button>
+          <button class="spell-btn" id="1">1</button>
+          <button class="spell-btn" id="2">2</button>
+          <button class="spell-btn" id="3">3</button>
+          <button class="spell-btn" id="4">4</button>
+          <button class="spell-btn" id="5">5</button>
+          <button class="spell-btn" id="6">6</button>
+          <button class="spell-btn" id="7">7</button>
+          <button class="spell-btn" id="8">8</button>
+          <button class="spell-btn" id="9">9</button>
         </div>
         <h3 id="spellTitle"></h3>
         <ul id="spellList"></ul>
       </div>
-      <div class="contentBody hidden" id="classSpellBody">
-        <div class="redRow" id="classSpellRow">
-          <button class="classSpellBtn" value="0">Cantrips</button>
-          <button class="classSpellBtn" value="1">1</button>
-          <button class="classSpellBtn" value="2">2</button>
-          <button class="classSpellBtn" value="3">3</button>
-          <button class="classSpellBtn" value="4">4</button>
-          <button class="classSpellBtn" value="5">5</button>
-          <button class="classSpellBtn" value="6">6</button>
-          <button class="classSpellBtn" value="7">7</button>
-          <button class="classSpellBtn" value="8">8</button>
-          <button class="classSpellBtn" value="9">9</button>
+      <div class="content-body hidden" id="classSpellBody">
+        <div class="red-row" id="classSpellRow">
+          <button class="class-spell-btn" value="0">Cantrips</button>
+          <button class="class-spell-btn" value="1">1</button>
+          <button class="class-spell-btn" value="2">2</button>
+          <button class="class-spell-btn" value="3">3</button>
+          <button class="class-spell-btn" value="4">4</button>
+          <button class="class-spell-btn" value="5">5</button>
+          <button class="class-spell-btn" value="6">6</button>
+          <button class="class-spell-btn" value="7">7</button>
+          <button class="class-spell-btn" value="8">8</button>
+          <button class="class-spell-btn" value="9">9</button>
         </div>
         <h3 id="classSpellTitle"></h3>
         <ul id="classSpellList">
         </ul>
       </div>
-      <div class="contentBody hidden" id="diceBody">
-        <div class="classNav row" id="diceNavBar">
-          <h2 class="diceH2">Dice Roller</h2>
+      <div class="content-body hidden" id="diceBody">
+        <div class="class-nav row" id="diceNavBar">
+          <h2 class="dice-h2">Dice Roller</h2>
           <img src="images/dice/d20-fill.svg" alt="dice" class="icon dice" id="diceBar">
         </div>
-        <div class="diceRow">
-          <div class="colFourth">
-            <button class="diceBtn" value="20">D20 <img src="images/dice/d20-fill.svg" class="icon dice svg" id="d20"></button>
-            <button class="diceBtn" value="12">D12 <img src="images/dice/d12-fill.svg" class="icon dice svg" id="d12"></button>
-            <button class="diceBtn" value="10">D10 <img src="images/dice/d10-fill.svg" class="icon dice svg" id="d10"></button>
-            <button class="diceBtn" value="8">D8 <img src="images/dice/d8-fill.svg" class="icon dice svg" id="d8"></button>
-            <button class="diceBtn" value="6">D6 <img src="images/dice/d6-fill.svg" class="icon dice svg" id="d6"></button>
-            <button class="diceBtn" value="4">D4 <img src="images/dice/d4-fill.svg" class="icon dice svg" id="d4"></button>
+        <div class="dice-row">
+          <div class="col-fourth">
+            <button class="dice-btn" value="20">D20 <img src="images/dice/d20-fill.svg" class="icon dice svg" id="d20"></button>
+            <button class="dice-btn" value="12">D12 <img src="images/dice/d12-fill.svg" class="icon dice svg" id="d12"></button>
+            <button class="dice-btn" value="10">D10 <img src="images/dice/d10-fill.svg" class="icon dice svg" id="d10"></button>
+            <button class="dice-btn" value="8">D8 <img src="images/dice/d8-fill.svg" class="icon dice svg" id="d8"></button>
+            <button class="dice-btn" value="6">D6 <img src="images/dice/d6-fill.svg" class="icon dice svg" id="d6"></button>
+            <button class="dice-btn" value="4">D4 <img src="images/dice/d4-fill.svg" class="icon dice svg" id="d4"></button>
           </div>
-          <div class="colThreeFour">
+          <div class="col-three-four">
             <img src="images/animated/D4.gif" class="hidden" id="diceGif">
-            <img src="images/dice/d20-fill.svg" class="bigDie">
-            <p class="diceP hidden" id="rollResult"></p>
+            <img src="images/dice/d20-fill.svg" class="big-die">
+            <p class="dice-p hidden" id="rollResult"></p>
           </div>
         </div>
-          <div class="rollRow">
+          <div class="roll-row">
             <form>
-              <div class="diceCounterRow">
+              <div class="dice-counter-row">
                 <div class="row">
                   <label for="diceAmt">Number of Dice</label>
                   <input
@@ -144,22 +144,22 @@
       </div>
       <div class="overlay hidden" id="overlay">
         <div class="modal">
-          <div class="redRow mRow">
+          <div class="red-row m-row">
             <h3 id="spellName"></h3>
             <h3 id="spellLevel"></h3>
           </div>
           <div id="spellDesc">
           </div>
-          <div class="redRow">
-            <div class="colHalf">
-              <p class="pModal" id="spellSch"></p>
-              <p class="pModal" id="spellConc"></p>
-              <p class="pModal" id="spellComp"></p>
+          <div class="red-row">
+            <div class="col-half">
+              <p class="p-modal" id="spellSch"></p>
+              <p class="p-modal" id="spellConc"></p>
+              <p class="p-modal" id="spellComp"></p>
             </div>
-            <div class="colHalf">
-              <p class="pModal" id="spellCast"></p>
-              <p class="pModal" id="spellRng"></p>
-              <p class="pModal" id="spellRit"></p>
+            <div class="col-half">
+              <p class="p-modal" id="spellCast"></p>
+              <p class="p-modal" id="spellRng"></p>
+              <p class="p-modal" id="spellRit"></p>
             </div>
           </div>
         </div>
