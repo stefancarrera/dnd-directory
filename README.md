@@ -4,6 +4,7 @@ A web application for D&D (Dungeons & Dragons) players who want a quick referenc
 
 ## About the project
 As a D&D player I wanted to build something that I could use to get brief class descriptions, including abilities and proficiencies. Keep track of all spells available to each class can also be hassle, this led me to creating the spell list that can be filtered by level and class, as well as provide individual descriptions. The final piece was the dice roller and I built that simply because what is D&D without the dice?
+
 [D&D Directory](https://stefancarrera.github.io/dnd-directory/)
 
 ## Technologies Used
