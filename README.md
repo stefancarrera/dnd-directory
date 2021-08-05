@@ -25,7 +25,7 @@ As a D&D player I wanted to build something that I could use to get brief class 
 ![dice roller](https://user-images.githubusercontent.com/53131688/128393687-6c3ff4ea-442e-47f1-bf31-03e74600ef21.gif)
 
 ## Stretch Features
--	Race information
+-	Character Race information and bonuses
 -	Character builder
 
 ## Getting Started
