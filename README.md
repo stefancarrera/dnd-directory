@@ -20,7 +20,9 @@ As a D&D player I wanted to build something that I could use to get brief class 
 -	Class spell lists organized by spell level
 -	Individual spell descriptions
 -	Dice roller for D20, D12, D10, D8, D6, & D4 with dice amount and modifier options.
-in
+
+![spell list](https://user-images.githubusercontent.com/53131688/128393722-499695d1-6f49-4448-b3c1-3a1b71c50572.gif)
+![dice roller](https://user-images.githubusercontent.com/53131688/128393687-6c3ff4ea-442e-47f1-bf31-03e74600ef21.gif)
 
 ## Stretch Features
 -	Race information
