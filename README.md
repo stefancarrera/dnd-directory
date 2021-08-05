@@ -12,7 +12,7 @@ As a D&D player I wanted to build something that I could use to get brief class 
 -	JavaScript ES6
 -	CSS3
 -	D&D 5th Edition API
--	AJAX
+-	XMLHttpRequest
 
 ## Features
 -	Class description, abilities, & proficiencies
